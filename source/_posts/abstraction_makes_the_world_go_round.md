@@ -24,13 +24,11 @@ I like to think of abstractions as introducing new layers to a process or struct
 At this point, it would resonate with you that the mind forces us to abstract with whatever we find complex. Perhaps this approach has done more damage than good, how then can we avoid the wrong abstraction? [The Wrong Abstraction by Sandi Metz](https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction) highlights that
 > duplication is far cheaper than the wrong abstraction.
 
-### The Abstraction Pyramid
+## The Abstraction Pyramid
 
 The Abstraction pyramid defines the fundamental concepts on which ideas and logic evolve. The main idea, I believe is that every work should be based on concrete details that can spawn into a subset of layers at the top. For instance, a piece of text or structure that is too abstract could rather be difficult to connect with, or even hard to understand. Physical details like smell, touch, sight, or even sound evoke clear thoughts aiding the connection of abstracted ideas from conceptual beliefs or facts.
 
-![Abstraction Pyramid](https://res.cloudinary.com/dnpwm8xgp/image/upload/v1720191996/sdb/qcnrylwxa5o0cdc2yl2r.png "abstraction pyramid")
-
-                                                image source: created by me
+![Abstraction Pyramid](/images/abstractions/pyramid.png "abstraction pyramid")
 
 The abstraction pyramid can effectively explain how complex systems or base ideas are built upon. With each layer, an abstraction of the other. The higher the pyramid, the higher the number of simpler interfaces. For clarity, the pyramid can be divided into three subsets.  
 
@@ -38,7 +36,7 @@ The abstraction pyramid can effectively explain how complex systems or base idea
 - The Middle Layer: This layer is birthed one abstraction away from the base layer. This layer serves to bridge the gap that connects the top and the base layer. More noticeable attributes include a step further into complexity, domain expansion, and newer ideologies. Each of these attributes hides the underlying truth from the surface. In Biology, tissues, and organs can be categorized as known examples of the middle layer. Socio-political systems, involve communities or institutions.
 - The Top Layer: represents the most abstract of complex of systems. Here, there's a perceived high-level functionality that leverages the base layer streamlined to serve a single purpose. In his layer, behaviors can be predictable. They integrate to form cohesive bonds with the middle layer. Much more likened to non-experts or end users to interact with, because of its known simplified interface.
 
-### The price for Abstraction
+## The price for Abstraction
 
 Abstractions are never free, there's always a price attached. The creator of the C++ programming language Bjarne Stroustrup: In his book Foundations of C++ said:
 
@@ -130,14 +128,14 @@ The lack of abstraction can be expensive and time-consuming. You can try writing
 
 I've spent more time in my life learning that we can always use abstractions but at a price. The greater good here is finding one whose values align well with your interests, or what you aim to achieve. This is not to disapprove those who prefer to build from scratch, a wise and thoughtful approach I must commend you. I came across something on [Hacker News](https://news.ycombinator.com/) that says, "People tend to discount the cost of all abstractions that they have internalized. Therefore when they get to a new environment, they immediately try to recreate and incorporate the abstractions that they have previously used". This largely translates to, people taking up abstractions to prevent themselves from running into bigger problems in the future, an alternate route with no effects, whose path should be taken all the time.
 
-### Conclusion  
+## Conclusion  
 
 Abstractions evolve with time, like a parasite. It grows and studies the host environment. What would you call a good or bad abstraction, is it one which allows you to look under the hood, allowing for better optimization? That is a question only you can answer my friend. I am but a messenger, like Morpheus in the Matrix movie. I present to you to red pill, which enables you to understand what is happening inside the abstraction, or the blue pill, allowing you to only use that abstraction.
 
 Aloha,  
 David❤️
 
-![matrix](https://res.cloudinary.com/dnpwm8xgp/image/upload/v1720191887/sdb/g2v0y7coztomlei80q10.webp "hand showing pills from the matrix movie")
+![matrix](/images/abstractions/matrix_pills.jpg "hand showing pills from the matrix movie")
 
 ## TLDR
 
