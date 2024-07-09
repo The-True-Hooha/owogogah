@@ -1,9 +1,10 @@
 ---
 title: The Boring Fundamentals
+readTime: true
 date: 2023-01-08 15:31:02
 tags: [fundamentals, ideas, creativity, learning]
 ---
-![boring stuff](/images/boring_fundamentals/image_r.jpg)
+![boring stuff](/images/boring_fundamentals/image_r.jpg "man teaching boring stuff")
 
 Happy New Year! If you’re reading this, I want to thank you for taking the time for the first issue of 2023. Also, for my newsletter subscribers, you’d know I’ve barely kept up with things here. My apologies, I had to fight a few internal battles that I underestimated. That aside, the good news is that I’m back and better, at least for now, I’m sure I believe😉😎.
 

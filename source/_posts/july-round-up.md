@@ -1,6 +1,7 @@
 ---
 title: July Monthly Roundup
 date: 2022-08-08 15:39:28
+readTime: true
 tags: [life, experience, thoughts]
 ---
 
