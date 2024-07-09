@@ -7,6 +7,6 @@ Hi! I am `David`.
 
 An engineer driven by curiosity and perseverance. My main work these days entails my day job, and on the side building tools/products within my area of interests.
 
-interests/activities: distributed systems, AI, reverse engineering, autonomous systems, semiconductors.
+`interests/activities`: distributed systems, AI, reverse engineering, autonomous systems, semiconductors.
 
 `I own nothing, but the will to see Christ manifested in my domain.`
