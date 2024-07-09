@@ -1,0 +1,52 @@
+name: Optimize
+
+on:
+  push:
+    branches: 
+        - main # the default branch
+  pull_request:
+    branches:
+        - master
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+        
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-npm-cache
+        restore-keys: |
+            ${{ runner.OS }}-npm-cache
+
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Install Hexo CLI
+      run: npm install hexo-cli -g
+      
+    - name: Generate static files
+      run: hexo generate
+      
+    - name: Check for broken links
+      run: |
+        npm install broken-link-checker -g
+        hexo server &
+        sleep 5
+        blc http://localhost:4000 -ro
+      
+    # - name: Optimize images
+    #   run: |
+    #     sudo apt-get install jpegoptim optipng
+    #     find source/images -type f -name "*.jpg" -exec jpegoptim --strip-all --max=85 {} \;
+    #     find source/images -type f -name "*.jpeg" -exec jpegoptim --strip-all --max=85 {} \;
+    #     find source/images -type f -name "*.png" -exec optipng -o5 {} \;
