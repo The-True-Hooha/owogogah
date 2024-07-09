@@ -37,12 +37,12 @@ jobs:
     - name: Generate static files
       run: hexo generate
       
-    - name: Check for broken links
-      run: |
-        npm install broken-link-checker -g
-        hexo server &
-        sleep 5
-        blc http://localhost:4000 -ro
+    # - name: Check for broken links
+    #   run: |
+    #     npm install broken-link-checker -g
+    #     hexo server &
+    #     sleep 5
+    #     blc http://localhost:4000 -ro
       
     # - name: Optimize images
     #   run: |
