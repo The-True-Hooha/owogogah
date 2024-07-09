@@ -11,13 +11,13 @@ tags: [science, abstract, programming]
 
 ---
 
-This paper is not written to start another episode of a flat or round earth debate. Rather, I aim to spark a thought, and discuss what abstraction is, the pyramid of abstractions, and the price for abstraction.
+This paper is not written to start another episode of a flat or round earth debate. Rather, I aim to spark a thought, and discuss what abstraction is, the pyramid of abstraction, and the price for abstraction.
 
 Wikipedia defines Abstraction as a process wherein general rules and concepts are derived from using and classifying specific examples, literal (real or concrete) signifiers, first principles, or other methods. It also says it is the outcome of a concept that acts as a common noun for all subordinate concepts and connects any related concepts as a group, field, or category.
 
 I had initially thought about writing this blog targeted at the software - tech-folks. But I implore you to walk with me, I will make this relatable to both code and real life. [you might find computer-related terms, abeg no vex]
 
- My thoughts on this topic began to take form after reading the book "A History of Western Philosophy" by Bertrand Russel, on advancing what Western civilization has taught us, and where we are now. For a moment, I urge you to pause and think, from the first men, who wrote on stones with carvings, to the first paper material "papyrus", down to our present use of computers. it can be seen clearly how the art of writing has evolved. Ask yourself, has this new form introduced a new set of super writers, or made the tradeoffs favorable? What would have been the narratives for writers like William Shakespeare, or for men like Socrates who was largely fond of teachings in the Greek square, perhaps if X existed in his time?
+ My thoughts on this topic began to take form after reading the book "A History of Western Philosophy" by Bertrand Russel. On advancing what Western civilization has taught us, and where we are now. For a moment, I urge you to pause and think, from the first men, who wrote on stones with carvings, to the first paper material "papyrus", down to our present use of computers. it can be seen clearly how the art of writing has evolved. Ask yourself, has this new form introduced a new set of super writers, or made the tradeoffs favorable? What would have been the narratives for writers like William Shakespeare, or for men like Socrates who was largely fond of teachings in the Greek square, perhaps if X existed in his time?
 
 I like to think of abstractions as introducing new layers to a process or structure. Hidden and complicated facets can be simplified into something smaller, isolating away the important machining part of the system. For instance, should the final product of making a pen require 10 steps, it can be abstracted to require 4 - 6 steps. The easiest way to relate to abstraction can be likened to an artist or a painter. To draw the human body, you'd probably start with the head down to the legs. But with abstraction, a faster method can be introduced involving the use of certain shapes, requiring less time but with equal results.
 
@@ -33,7 +33,9 @@ The Abstraction pyramid defines the fundamental concepts on which ideas and logi
 The abstraction pyramid can effectively explain how complex systems or base ideas are built upon. With each layer, an abstraction of the other. The higher the pyramid, the higher the number of simpler interfaces. For clarity, the pyramid can be divided into three subsets.  
 
 - The Base Layer: Represents the primary systemic beliefs on which systems are built. They could be laws of nature or primary instincts. Newton's fundamental ideas on the laws of Motion evolved into several ways we can interact with machines or navigate the universe. From building bridges to space travel. These ideas hold the fundamental laws we obey or put into practice.
+
 - The Middle Layer: This layer is birthed one abstraction away from the base layer. This layer serves to bridge the gap that connects the top and the base layer. More noticeable attributes include a step further into complexity, domain expansion, and newer ideologies. Each of these attributes hides the underlying truth from the surface. In Biology, tissues, and organs can be categorized as known examples of the middle layer. Socio-political systems, involve communities or institutions.
+
 - The Top Layer: represents the most abstract of complex of systems. Here, there's a perceived high-level functionality that leverages the base layer streamlined to serve a single purpose. In his layer, behaviors can be predictable. They integrate to form cohesive bonds with the middle layer. Much more likened to non-experts or end users to interact with, because of its known simplified interface.
 
 ## The price for Abstraction
@@ -115,7 +117,7 @@ app.listen(3000, () => console.log('Server running on port 3000'));
 
 ```
 
-Now, let's break down what both code does, and the adoption of abstraction therein. Comparing how C++ of JavaScript might handle this task.
+Now, let's break down what both code does, and the adoption of abstraction therein. Comparing how C++ or JavaScript might handle this task.
 
 The code runs a simple web server in port `3030` and `3000` respectively. In the request made, the item is stored in an array, and the time taken is calculated with a response returned. Software engineers are familiar with high, low-level languages, and machine code, etc. Now let's look at this code and break it down in terms of memory management, performance, type safety, and concurrency. Recall I made attributes of the middle and top layers, and how they can be subdivided into different facets. In real-life practice, the performance or bottlenecks might not be noticeable. However, as it grows to handle more users/requests, and other complex operations one language stands out from the other. From these two code examples, the key differences are:
 
@@ -130,7 +132,7 @@ I've spent more time in my life learning that we can always use abstractions but
 
 ## Conclusion  
 
-Abstractions evolve with time, like a parasite. It grows and studies the host environment. What would you call a good or bad abstraction, is it one which allows you to look under the hood, allowing for better optimization? That is a question only you can answer my friend. I am but a messenger, like Morpheus in the Matrix movie. I present to you to red pill, which enables you to understand what is happening inside the abstraction, or the blue pill, allowing you to only use that abstraction.
+Abstractions evolve with time, like a parasite. It grows and studies the host environment. What would you call a good or bad abstraction, is it one which allows you to look under the hood, allowing for better optimization? That is a question only you can answer my friend. I am but a messenger, like Morpheus in the Matrix movie. I present to you the red pill, which enables you to understand what is happening inside the abstraction, or the blue pill, allowing you to only use that abstraction.
 
 Aloha,  
 David❤️
