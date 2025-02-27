@@ -3,6 +3,10 @@ title: Projects
 date: 2024-10-26
 ---
 
+### [PDF Knife](https://github.com/The-True-Hooha/pdf-knife)
+
+Automatically download pdfs opened in your browser
+[GitHub](https://github.com/The-True-Hooha/pdf-knife)
 
 ### [Onyeego](https://onyeego.com)
 
