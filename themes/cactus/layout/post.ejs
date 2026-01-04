@@ -8,6 +8,12 @@
       <%- partial('_partial/post/date', { post: page, class_name: 'postdate' }) %>
       <%- partial('_partial/post/category') %>
       <%- partial('_partial/post/tag') %>
+      <% 
+  const text = strip_html(page.content);
+  const words = text.split(/\s+/).filter(w => w.length > 0).length;
+  const minutes = Math.ceil(words / 200);
+%>
+<span class="reading-time"><%= minutes %> min read</span>
     </div>
   </header>
   <%- partial('_partial/post/gallery') %>
@@ -15,4 +21,5 @@
     <%- page.content %>
   </div>
 </article>
+<%- partial('_partial/kudos') %>
 <%- partial('_partial/comments') %>

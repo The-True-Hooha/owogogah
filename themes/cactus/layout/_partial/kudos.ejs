@@ -1,0 +1,89 @@
+<div class="kudos-container" data-slug="<%= page.path.replace(/\.html$|index\.html$/g, '') %>">
+  <button class="kudos-btn" aria-label="Give kudos">
+    <svg viewBox="0 0 100 100" class="kudos-circle">
+      <circle cx="50" cy="50" r="45" class="outer" />
+      <circle cx="50" cy="50" r="8" class="dot" />
+    </svg>
+  </button>
+  <span class="kudos-count">—</span>
+  <span class="kudos-label">APPRECIATED</span>
+</div>
+
+<style>
+.kudos-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2rem 0;
+}
+.kudos-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease;
+}
+.kudos-btn:hover { transform: scale(1.1); }
+.kudos-btn:active { transform: scale(0.9); }
+.kudos-btn.liked { pointer-events: none; }
+.kudos-circle { width: 60px; height: 60px; }
+.kudos-circle .outer {
+  fill: transparent;
+  stroke: #2bbc8a;
+  stroke-width: 4;
+  transition: fill 0.2s ease;
+}
+.kudos-circle .dot {
+  fill: #2bbc8a;
+  transition: opacity 0.2s ease;
+}
+.kudos-btn.liked .kudos-circle .outer {
+  fill: #2bbc8a;
+}
+.kudos-btn.liked .kudos-circle .dot {
+  opacity: 0;
+}
+.kudos-count { font-size: 1.5rem; font-weight: 700; }
+.kudos-label { font-size: 0.95rem; color: #353434; letter-spacing: 1.5px; text-transform: uppercase; }
+</style>
+
+<script>
+(function() {
+  const SUPABASE_URL = 'https://hycnpqrqztwvwdzgxxsn.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_tSjKhndwpa8_Q-oDf5SqsQ_jJbdFNo_';
+  
+  const container = document.querySelector('.kudos-container');
+  const slug = container.dataset.slug;
+  const countEl = container.querySelector('.kudos-count');
+  const btn = container.querySelector('.kudos-btn');
+  const storageKey = `kudos_${slug}`;
+
+  if (localStorage.getItem(storageKey)) {
+    btn.classList.add('liked');
+  }
+
+  fetch(`${SUPABASE_URL}/rest/v1/likes?slug=eq.${encodeURIComponent(slug)}&select=count`, {
+    headers: { apikey: SUPABASE_KEY }
+  })
+    .then(r => r.json())
+    .then(data => { countEl.textContent = data[0]?.count || 0; });
+
+  btn.addEventListener('click', async () => {
+    if (localStorage.getItem(storageKey)) return;
+    
+    btn.classList.add('liked');
+    localStorage.setItem(storageKey, '1');
+    
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_like`, {
+      method: 'POST',
+      headers: { 
+        apikey: SUPABASE_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ slug_param: slug })
+    });
+    const newCount = await res.json();
+    countEl.textContent = newCount;
+  });
+})();
+</script>
