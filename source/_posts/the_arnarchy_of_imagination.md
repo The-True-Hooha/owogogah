@@ -1,7 +1,7 @@
 ---
 title: The Anarchy of Imagination
 readTime: true
-date: 2025-12-26 15:44:31
+date: 2026-01-03 15:44:31
 tags: [dreams, advice, reflect, self, letter]
 ---
 
@@ -53,7 +53,7 @@ Curiosity breeds imagination, but requires the systemic ability to execute them 
 
 - Encourage collaboration: I've sent hundreds of DM's with no reply. But it doesn't just stop there. I also want to provide opportunities for people bounce ideas on one another. I believe diversity and inclusion often lead to more robust and innovative solutions. (Feel free to reach out if you're a collab)
 
-- Create patterns, break patterns: Build a habit where I challenges day to day existing dogmas and ask "what if?" Be the bad apple for once.
+- Create patterns, break patterns: Build a habit where I challenge day to day existing dogmas and ask "what if?" Be the bad apple for once.
 
 ## The Dangers of Suppressing Imagination
 
