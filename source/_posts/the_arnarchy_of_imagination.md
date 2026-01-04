@@ -7,9 +7,9 @@ tags: [dreams, advice, reflect, self, letter]
 
 ## Prologue
 
-*This is not another end-of-year review. Nothing interesting happened. I hope this robs you of any excitement brewing. I know that I know nothing, but by the time you're done reading this. I hope you can learn a thing or two from this. I'd appreciate reviews or feedback. Dàálụ*
+*This is not another end-of-year review. Nothing interesting happened. I hope this robs you of any excitement brewing. I know that I know nothing, but by the time you're done reading this. I hope you can learn a thing or two. I'd appreciate reviews or feedback. Dàálụ*
 
-The first draft for this piece started on the night of Saturday,2nd of January 2026, at exactly 21:42 UTC +1 and was completed on the same night. It is more or less important to attribute how I started or why I am starting and finishing this in a single stretch. Dear aunties and uncles, the last time I completed and published a draft was in July 2024. Although I actively curate a collection of drafts, the result of what my aching mind conceives. I write, to clear my mind, to gain clarity, to fathom imagination. Likening this to when an artist picks a brush and scribbles a few lines on a canvas.
+The first draft for this piece started on the night of Saturday, 2nd of January 2026, at exactly 21:42 UTC +1 and was completed on the same night. It is more or less important to attribute how I started or why I am starting and finishing this in a single stretch. Dear aunties and uncles, the last time I completed and published a draft was in July 2024. Although I actively curate a collection of drafts, the result of what my aching mind conceives. I write, to clear my mind, to gain clarity, to fathom imagination. Likening this to when an artist picks a brush and scribbles a few lines on a canvas.
 
 I'd indulge you a little. Pablo Picasso consistently maintained a daily routine of painting throughout his 70-year career. Estimated at a total of about 50,000 pieces. What happens when you prioritize execution over quality? Expectations and results are like distant cousins, but the enemy of none(banger!). These two are related, but not closely aligned. They both stem from the input of hard work(read labour), hope, effort, or intention. Yet often don't resemble each other. Disappointment comes not from their existence, but from how we relate to them.
 
