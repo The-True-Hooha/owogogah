@@ -48,42 +48,51 @@
 </style>
 
 <script>
-(function() {
-  const SUPABASE_URL = 'https://hycnpqrqztwvwdzgxxsn.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_tSjKhndwpa8_Q-oDf5SqsQ_jJbdFNo_';
-  
+(function () {
+  const API_BASE = 'https://blog.owogogahhero.workers.dev';
+
   const container = document.querySelector('.kudos-container');
+  if (!container) return;
+
   const slug = container.dataset.slug;
   const countEl = container.querySelector('.kudos-count');
   const btn = container.querySelector('.kudos-btn');
+
   const storageKey = `kudos_${slug}`;
 
   if (localStorage.getItem(storageKey)) {
     btn.classList.add('liked');
   }
-
-  fetch(`${SUPABASE_URL}/rest/v1/likes?slug=eq.${encodeURIComponent(slug)}&select=count`, {
-    headers: { apikey: SUPABASE_KEY }
-  })
+  
+  fetch(`${API_BASE}?slug=${encodeURIComponent(slug)}`)
     .then(r => r.json())
-    .then(data => { countEl.textContent = data[0]?.count || 0; });
+    .then(data => {
+      countEl.textContent = data.likes ?? 0;
+    })
+    .catch(() => {
+      countEl.textContent = '0';
+    });
 
+  // Handle like
   btn.addEventListener('click', async () => {
     if (localStorage.getItem(storageKey)) return;
-    
+
     btn.classList.add('liked');
     localStorage.setItem(storageKey, '1');
-    
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_like`, {
-      method: 'POST',
-      headers: { 
-        apikey: SUPABASE_KEY,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ slug_param: slug })
-    });
-    const newCount = await res.json();
-    countEl.textContent = newCount;
+
+    try {
+      const res = await fetch(
+        `${API_BASE}?slug=${encodeURIComponent(slug)}`,
+        { method: 'POST' }
+      );
+
+      const data = await res.json();
+      countEl.textContent = data.likes;
+    } catch (e) {
+      // rollback UI if needed
+      btn.classList.remove('liked');
+      localStorage.removeItem(storageKey);
+    }
   });
 })();
 </script>
