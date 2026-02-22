@@ -21,9 +21,9 @@ I’m writing this to clearly document:
 - what problems showed up during real building,
 - and what direction the product is now taking.
 
-Think of this as proof-of-work — not promises.
+Think of this as a proof-of-work — not promises.
 
-<!-- Illustration: Minimal timeline showing idea → build → rethink -->
+![idea-phase](/images/building-semradr-1/1.png "idea-phase")
 
 ---
 
@@ -35,8 +35,7 @@ Semradr started with a simple observation leading to a question:
 
 People don’t struggle because they lack tools. They suffer from burnout as a result of consistently creating contents, perhaps on multiple platforms(max input, less results); they don’t know **what content to create next**. But the algorithm favours the bold, the gold diggers.
 
-<!-- insert image of the metrics of contents posted daily and platform -->
-<!-- maybe a graph or something -->
+![content-metrics](/images/building-semradr-1/2.png "content-metrics")
 
 - Contents are being posted daily.
 - Platform algorithms are changing weekly.
@@ -56,8 +55,6 @@ At the time, the problem looked like a *social media problem*(we tracked perform
 - teams reacting instead of planning
 
 So the early shape of Semradr leaned towards content analytics and performance visibility for creators, teams etc.
-
-<!-- Illustration: Early Semradr scope — analytics-centric -->
 
 ---
 
@@ -85,7 +82,7 @@ Creators, freelancers, agencies, and small teams were:
 - Struggling to prove ROI
 - Losing clients because they looked reactive, not proactive
 
-<!-- Illustration: Graph of decision fatigue over performance drop over time -->
+![decision-fatigue graph](/images/building-semradr-1/3.png "decision-fatigue graph")
 
 ### 1. Social Media Infrastructure Is Fragile
 
@@ -97,8 +94,6 @@ Building schedulers or another social media tool sounded attractive, but in prac
 - Features can disappear overnight
 
 This introduces **platform risk** into the core of the product.
-
-<!-- Diagram: Dependency on external platform APIs -->
 
 ---
 
@@ -112,8 +107,6 @@ Scraping or pulling large volumes of external data:
 - breaks often
 
 At scale, this becomes less of a feature and more of a liability.
-
-<!-- Chart: Rising cost of maintaining scrapers over time -->
 
 ---
 
@@ -133,8 +126,6 @@ The pain shows up as:
 
 This problem exists **with or without social media**.
 
-<!-- Illustration: Decision bottleneck, not execution bottleneck -->
-
 ---
 
 ## The Shift in Semradr’s Direction
@@ -153,7 +144,7 @@ Not decisions made emotionally.
 Not decisions made from isolated metrics.
 But decisions grounded in signals, demographics, context, present and past outcomes.
 
-<!-- Illustration: Signals → Context → Decision -->
+![context-decision](/images/building-semradr-1/4.png "context-decision")
 
 ---
 
@@ -172,8 +163,6 @@ What helps is:
 - understanding consequences before acting
 
 Semradr is less about *showing data* and more about *using data to reduce uncertainty*.
-
-<!-- Diagram: Data → Insight → Confidence -->
 
 ---
 
@@ -198,8 +187,6 @@ Teams without this tend to:
 
 Semradr exists to **compress learning** and make those differences visible earlier. This is about saving time, saving costs, manpower, reducing guess work
 
-<!-- Graph: Long-term divergence between data-backed and intuition-only paths -->
-
 ---
 
 ## What Semradr Is Being Built to Do
@@ -218,25 +205,6 @@ That applies to:
 - solo builders
 
 It’s not limited to one platform, one format, or one channel.
-
-<!-- Illustration: One decision engine feeding multiple contexts -->
-
-<!-- ## About the Current Website
-
-The current Semradr website reflects an **earlier version of the idea**.
-
-It was built when the product leaned closer to analytics and content performance.
-
-As the vision has evolved, the site no longer fully represents what’s being built.
-
-A new landing page is in progress — aligned with:
-
-- decision clarity
-- calm design
-- creator-first thinking
-- less noise, more signal
-
-Placeholder: New landing page direction sketch -->
 
 ---
 
@@ -266,7 +234,7 @@ It isn’t a side idea.
 
 It’s a long-term attempt to build something solid in an ecosystem full of noise.
 
-This post exists so the direction is clear — to me, and to anyone paying attention.
+This post exists so the direction is clear to me, and to anyone paying attention.
 
 — *David*  
 Building Semradr
