@@ -11,9 +11,9 @@
   },
   {
     "name": "Aegis",
-    "url": "https://www.aegis.owogogah.com",
+    "url": "https://aegis.owogogah.com",
     "github": "",
-    "live": "https://www.aegis.owogogah.com",
+    "live": "https://aegis.owogogah.com",
     "desc": "AI agent evaluation harness — sandboxed execution, live LLM proxying, and CI-native reporting. Wrap your agent in a full eval suite. Ship with confidence because you measured it.",
     "stack": ["AI", "rust", "evaluation"],
     "status": "active",
