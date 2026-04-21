@@ -1,0 +1,395 @@
+// ================================================================
+// owogogah — about page styles
+// ================================================================
+
+@keyframes about-fade-up
+  from
+    opacity: 0
+    transform: translateY(8px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes about-dot-pulse
+  0%, 100%
+    box-shadow: 0 0 8px rgba(43, 188, 138, 0.8)
+    opacity: 1
+  50%
+    box-shadow: 0 0 3px rgba(43, 188, 138, 0.3)
+    opacity: 0.5
+
+.about-wrap
+  padding-top: 0.5rem
+
+  > *
+    opacity: 0
+    animation: about-fade-up 0.45s ease forwards
+
+  > *:nth-child(1) { animation-delay: 0.05s }
+  > *:nth-child(2) { animation-delay: 0.12s }
+  > *:nth-child(3) { animation-delay: 0.19s }
+  > *:nth-child(4) { animation-delay: 0.26s }
+  > *:nth-child(5) { animation-delay: 0.33s }
+  > *:nth-child(6) { animation-delay: 0.40s }
+  > *:nth-child(7) { animation-delay: 0.47s }
+  > *:nth-child(8) { animation-delay: 0.54s }
+
+// ── HEADER ───────────────────────────────────────────────────────
+
+.about-header
+  margin-bottom: 2.5rem
+  padding-bottom: 2rem
+  border-bottom: 1px solid rgba(43, 188, 138, 0.15)
+
+.about-eyebrow
+  font-size: 10px
+  letter-spacing: 0.2em
+  text-transform: uppercase
+  color: $color-accent-1
+  opacity: 0.7
+  margin-bottom: 1rem
+
+.about-name
+  font-size: 26px
+  font-weight: 700
+  color: $color-text
+  letter-spacing: -0.02em
+  line-height: 1.1
+  margin-bottom: 0.35rem
+
+.about-role
+  font-size: 12px
+  color: $color-meta
+  letter-spacing: 0.05em
+  margin-bottom: 1rem
+
+.about-status-row
+  display: flex
+  align-items: center
+  gap: 0.5rem
+  font-size: 11px
+  color: $color-meta
+
+.about-dot
+  display: inline-block
+  width: 7px
+  height: 7px
+  border-radius: 50%
+  background: $color-accent-1
+  flex-shrink: 0
+  animation: about-dot-pulse 2.8s ease-in-out infinite
+
+.about-status-text
+  letter-spacing: 0.02em
+
+// ── SPEC GRID ────────────────────────────────────────────────────
+
+.about-specs
+  display: flex
+  flex-direction: column
+  gap: 0
+  margin-bottom: 2.5rem
+  border: 1px solid rgba(43, 188, 138, 0.12)
+  border-radius: 3px
+  overflow: hidden
+
+.spec-row
+  display: grid
+  grid-template-columns: 70px 1fr
+  gap: 1rem
+  padding: 0.65rem 1rem
+  border-bottom: 1px solid rgba(43, 188, 138, 0.08)
+  transition: background 0.15s ease
+
+  &:last-child
+    border-bottom: none
+
+  &:hover
+    background: rgba(43, 188, 138, 0.04)
+
+.spec-key
+  font-size: 9px
+  letter-spacing: 0.14em
+  text-transform: uppercase
+  color: $color-accent-1
+  opacity: 0.7
+  align-self: center
+  flex-shrink: 0
+
+.spec-val
+  font-size: 12px
+  color: $color-meta
+  line-height: 1.5
+  align-self: center
+
+  a
+    color: $color-text
+    background: none
+    transition: color 0.2s ease
+
+    &:hover
+      color: $color-accent-1
+      background: none
+
+// ── SECTION COMMON ───────────────────────────────────────────────
+
+.about-section
+  margin-bottom: 2.5rem
+
+.about-sec-header
+  font-size: 10px
+  letter-spacing: 0.22em
+  text-transform: lowercase
+  color: $color-meta
+  margin-bottom: 1.25rem
+
+  .about-bracket
+    color: $color-accent-1
+    font-weight: 700
+
+.about-body-text
+  font-size: 13px
+  color: $color-meta
+  line-height: 1.75
+  hyphens: none
+
+  a
+    color: $color-text
+    background: none
+    transition: color 0.2s ease
+
+    &:hover
+      color: $color-accent-1
+      background: none
+
+// ── MODULE LIST ──────────────────────────────────────────────────
+
+.module-list
+  display: flex
+  flex-direction: column
+  border-top: 1px dotted $color-border
+
+.module-row
+  display: grid
+  grid-template-columns: 55px 1fr
+  grid-template-rows: auto auto
+  gap: 0.1rem 0.75rem
+  padding: 0.65rem 0.5rem
+  border-bottom: 1px dotted $color-border
+  transition: background 0.15s ease
+
+  &:hover
+    background: rgba(43, 188, 138, 0.04)
+
+    .module-name
+      color: #ffffff
+
+@media (min-width: 480px)
+  .module-row
+    grid-template-columns: 55px 200px 1fr
+    grid-template-rows: auto
+
+    .module-status
+      grid-row: 1
+
+    .module-desc
+      grid-column: 3
+      grid-row: 1
+
+.module-status
+  font-size: 9px
+  letter-spacing: 0.08em
+  align-self: center
+  grid-column: 1
+  grid-row: 1
+
+.mod-loaded
+  color: $color-accent-1
+
+.module-name
+  font-size: 12px
+  font-weight: 700
+  color: $color-text
+  grid-column: 2
+  grid-row: 1
+  align-self: center
+  letter-spacing: -0.01em
+  transition: color 0.2s ease
+
+.module-desc
+  font-size: 11px
+  color: $color-meta
+  line-height: 1.55
+  grid-column: 1 / span 2
+  grid-row: 2
+  padding-top: 0.2rem
+
+  @media (min-width: 480px)
+    grid-column: 3
+    grid-row: 1
+    padding-top: 0
+
+// ── PROCESS LIST ─────────────────────────────────────────────────
+
+.process-list
+  display: flex
+  flex-direction: column
+  gap: 0
+  border: 1px solid rgba(43, 188, 138, 0.12)
+  border-radius: 3px
+  overflow: hidden
+
+.process-row
+  padding: 1rem 1.1rem
+  border-bottom: 1px solid rgba(43, 188, 138, 0.08)
+  transition: background 0.18s ease
+  position: relative
+
+  &::before
+    content: ""
+    position: absolute
+    top: 8px
+    left: 8px
+    width: 8px
+    height: 8px
+    border-top: 1.5px solid $color-accent-1
+    border-left: 1.5px solid $color-accent-1
+    opacity: 0
+    transition: opacity 0.2s ease
+
+  &:last-child
+    border-bottom: none
+
+  &:hover
+    background: rgba(43, 188, 138, 0.04)
+
+    &::before
+      opacity: 1
+
+.process-header
+  display: flex
+  align-items: center
+  gap: 0.75rem
+  margin-bottom: 0.5rem
+  flex-wrap: wrap
+
+.process-pid
+  font-size: 9px
+  color: $color-meta
+  opacity: 0.4
+  letter-spacing: 0.05em
+
+.process-name
+  font-size: 13px
+  font-weight: 700
+  color: $color-text
+
+  a
+    color: $color-text
+    background: none
+    transition: color 0.2s ease
+
+    &:hover
+      color: $color-accent-1
+      background: none
+
+.process-uptime
+  font-size: 9px
+  letter-spacing: 0.08em
+  color: $color-meta
+  opacity: 0.5
+  margin-left: auto
+
+.proc-badge
+  font-size: 10px
+  letter-spacing: 0.05em
+
+.proc-live
+  color: $color-accent-1
+
+.proc-building
+  color: #c8892a
+
+.process-desc
+  font-size: 12px
+  color: $color-meta
+  line-height: 1.65
+  hyphens: none
+
+// ── QUOTE ────────────────────────────────────────────────────────
+
+.about-quote
+  margin: 0
+  padding: 1rem 1.25rem
+  border-left: 2px solid $color-accent-1
+  background: rgba(43, 188, 138, 0.04)
+  border-radius: 0 3px 3px 0
+  font-size: 13px
+  color: $color-text
+  line-height: 1.7
+  font-style: italic
+  letter-spacing: 0.01em
+
+// ── I/O INTERFACES ───────────────────────────────────────────────
+
+.about-io
+  display: flex
+  flex-direction: column
+  gap: 0
+  border-top: 1px dotted $color-border
+
+.io-link
+  display: grid
+  grid-template-columns: 24px 90px 1fr
+  align-items: center
+  gap: 0.75rem
+  padding: 0.6rem 0.5rem
+  border-bottom: 1px dotted $color-border
+  background: none
+  text-decoration: none
+  transition: background 0.15s ease
+
+  &:hover
+    background: none
+    background-image: none
+
+    .io-label
+      color: #ffffff
+
+    .io-handle
+      color: $color-text
+
+.io-icon
+  font-size: 14px
+  color: $color-meta
+  opacity: 0.5
+  text-align: center
+
+.io-label
+  font-size: 11px
+  font-weight: 700
+  color: $color-meta
+  letter-spacing: 0.05em
+  transition: color 0.2s ease
+
+.io-handle
+  font-size: 11px
+  color: $color-meta
+  opacity: 0.6
+  transition: color 0.2s ease
+
+// ── FOOTER NOTE ──────────────────────────────────────────────────
+
+.about-footer-note
+  font-size: 10px
+  color: $color-meta
+  opacity: 0.4
+  letter-spacing: 0.1em
+  margin-top: 1rem
+  transition: opacity 0.3s ease
+
+  &:hover
+    opacity: 0.75
+
+  .about-bracket
+    color: $color-accent-1

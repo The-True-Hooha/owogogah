@@ -11,6 +11,8 @@ tags: [life, experience, thoughts]
 
 I love to make plans a lot, every single day of my life and every event that occurs. I can't always help it, but jot down these little task on my journal, notebook or even on my mind.
 
+<!-- more -->
+
 In as much as I love to keep things in my life private, I'd share my July experience with you. I started the year as an intern in my university, working with my professor as a researcher, well yeah. It was fun, and a position where I learnt new and interesting topics every single day. It has been that way until the strike that affected Nigerian Universities, and somehow looks like it isn't coming off soon, had to put me out of work, for most of the time.
 If you're reading this, must have noticed that I am a software engineer. I do mostly backend stuff with Java (springboot/spring frameworks) and Node.js(express).
 

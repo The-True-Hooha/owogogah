@@ -1,32 +1,507 @@
-.post-list
-  padding: 0
+@keyframes home-fade-up
+  from
+    opacity: 0
+    transform: translateY(10px)
+  to
+    opacity: 1
+    transform: translateY(0)
 
-  .post-item
-    margin-bottom: 1rem
-    margin-left: 0
-    list-style-type: none
+@keyframes home-pulse
+  0%, 100%
+    opacity: 1
+    transform: scale(1)
+  50%
+    opacity: 0.25
+    transform: scale(0.8)
 
-    .meta
-      display: block
-      margin-right: 16px
-      min-width: 100px
-      color: $color-meta
-      font-size: 14px
+@keyframes home-blink
+  0%, 100%
+    opacity: 1
+  50%
+    opacity: 0
+
+@keyframes home-typewriter
+  from
+    width: 0
+  to
+    width: 19ch
+
+@keyframes bracket-glow
+  0%, 100%
+    opacity: 0.7
+  50%
+    opacity: 1
+    text-shadow: 0 0 8px rgba(43, 188, 138, 0.6)
+
+@keyframes telemetry-in
+  from
+    opacity: 0
+    transform: translateX(-6px)
+  to
+    opacity: 1
+    transform: translateX(0)
+
+@keyframes trace-draw
+  from
+    stroke-dashoffset: 1200
+  to
+    stroke-dashoffset: 0
+
+
+.home-wrap
+  padding-top: 0.5rem
+
+
+.home-identity
+  margin-bottom: 2rem
+  padding: 1.5rem 1.5rem 1.25rem
+  border: 1px solid rgba(43, 188, 138, 0.15)
+  border-radius: 3px
+  position: relative
+  overflow: hidden
+  opacity: 0
+  animation: home-fade-up 0.5s ease 0.05s forwards
+
+  // dot-grid background
+  background-image: radial-gradient(circle, rgba(43, 188, 138, 0.11) 1px, transparent 1px)
+  background-size: 22px 22px
+
+  // scanline overlay
+  &::before
+    content: ""
+    position: absolute
+    inset: 0
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.06) 3px,
+      rgba(0, 0, 0, 0.06) 4px
+    )
+    pointer-events: none
+    z-index: 0
+
+  // vignette to fade dot grid at edges
+  &::after
+    content: ""
+    position: absolute
+    inset: 0
+    background: radial-gradient(ellipse at center, transparent 35%, $color-background 100%)
+    pointer-events: none
+    z-index: 0
+
+  // all children above overlays
+  > *
+    position: relative
+    z-index: 1
+
+.ident-eyebrow
+  font-size: 11px
+  letter-spacing: 0.18em
+  text-transform: uppercase
+  color: $color-accent-1
+  margin-bottom: 1.1rem
+  opacity: 0.9
+  // typewriter — "// init david.ogar" = 19 chars
+  display: inline-block
+  overflow: hidden
+  white-space: nowrap
+  width: 0
+  animation: home-typewriter 0.9s steps(19, end) 0.3s forwards
+  border-right: 2px solid $color-accent-1
+
+.ident-bio
+  font-size: 15px
+  line-height: 1.8
+  margin-bottom: 1.1rem
+  color: $color-text
+  hyphens: none
+
+.ident-status
+  font-size: 12px
+  color: $color-meta
+  margin-bottom: 1.25rem
+  display: flex
+  align-items: center
+  gap: 0.5rem
+  letter-spacing: 0.02em
+
+  &::after
+    content: "_"
+    color: $color-accent-1
+    animation: home-blink 1.1s step-end infinite
+    margin-left: 2px
+
+.status-dot
+  display: inline-block
+  width: 7px
+  height: 7px
+  border-radius: 50%
+  background: $color-accent-1
+  flex-shrink: 0
+  box-shadow: 0 0 8px rgba(43, 188, 138, 0.8), 0 0 16px rgba(43, 188, 138, 0.3)
+  animation: home-pulse 2.8s ease-in-out infinite
+
+.ident-social
+  display: flex
+  gap: 1.1rem
+  align-items: center
+  margin-bottom: 1.25rem
+
+  .soc-link
+    font-size: 17px
+    color: $color-meta
+    background: none
+    transition: color 0.2s ease, transform 0.15s ease
+
+    &:hover
+      color: $color-link
+      background: none
+      transform: translateY(-2px)
+
+// ── TELEMETRY STRIP ──────────────────────────────────────────────
+
+.sys-telemetry
+  display: flex
+  flex-wrap: wrap
+  gap: 0.5rem 1.25rem
+  padding-top: 0.75rem
+  border-top: 1px dotted rgba(43, 188, 138, 0.2)
+  opacity: 0
+  animation: telemetry-in 0.6s ease 1.1s forwards
+
+  span
+    font-size: 9px
+    letter-spacing: 0.14em
+    text-transform: uppercase
+    color: $color-accent-1
+    opacity: 0.55
+
+    &:nth-child(even)
+      color: $color-accent-1
+      opacity: 0.4
+
+// ── SIGNAL TRACE DIVIDER ─────────────────────────────────────────
+
+.signal-trace
+  margin: 1.5rem 0
+  width: 100%
+  height: 28px
+  opacity: 0.35
+
+  svg
+    width: 100%
+    height: 100%
+    display: block
+
+    path
+      stroke-dasharray: 1200
+      stroke-dashoffset: 1200
+      animation: trace-draw 1.8s ease 0.8s forwards
+
+// ── SECTION STRUCTURE ────────────────────────────────────────────
+
+.home-section
+  margin-bottom: 3rem
+  opacity: 0
+  animation: home-fade-up 0.5s ease forwards
+
+  &:nth-child(3)
+    animation-delay: 0.2s
+
+  &:nth-child(4)
+    animation-delay: 0.3s
+
+  &:nth-child(5)
+    animation-delay: 0.4s
+
+  &:nth-child(6)
+    animation-delay: 0.5s
+
+.sec-header
+  font-size: 10px
+  letter-spacing: 0.22em
+  text-transform: lowercase
+  color: $color-meta
+  margin-bottom: 1.5rem
+  padding-bottom: 0.4rem
+
+  .sec-bracket
+    color: $color-accent-1
+    font-weight: 700
+    animation: bracket-glow 3.5s ease-in-out infinite
+
+// ── EXPERIMENTS GRID ─────────────────────────────────────────────
+
+.exp-grid
+  display: grid
+  grid-template-columns: 1fr
+  border: 1px solid rgba(43, 188, 138, 0.18)
+  border-radius: 3px
+  overflow: hidden
+
+@media (min-width: 600px)
+  .exp-grid
+    grid-template-columns: repeat(3, 1fr)
+
+.exp-card
+  padding: 1.25rem 1.1rem
+  border-right: 1px solid rgba(43, 188, 138, 0.12)
+  transition: background 0.22s ease
+  position: relative
+
+  // PCB corner brackets — top-left
+  &::before
+    content: ""
+    position: absolute
+    top: 8px
+    left: 8px
+    width: 10px
+    height: 10px
+    border-top: 1.5px solid $color-accent-1
+    border-left: 1.5px solid $color-accent-1
+    opacity: 0
+    transition: opacity 0.25s ease
+
+  // PCB corner brackets — bottom-right
+  &::after
+    content: ""
+    position: absolute
+    bottom: 8px
+    right: 8px
+    width: 10px
+    height: 10px
+    border-bottom: 1.5px solid $color-accent-1
+    border-right: 1.5px solid $color-accent-1
+    opacity: 0
+    transition: opacity 0.25s ease
+
+  &:last-child
+    border-right: none
+
+  @media (max-width: 599px)
+    border-right: none
+    border-bottom: 1px solid rgba(43, 188, 138, 0.12)
+    &:last-child
+      border-bottom: none
+
+  &:hover
+    background: rgba(43, 188, 138, 0.04)
+
+    &::before
+      opacity: 1
+
+    &::after
+      opacity: 1
+
+    .exp-name a
+      color: $color-accent-1
+
+.exp-meta
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 0.55rem
+
+.exp-tag
+  font-size: 9px
+  letter-spacing: 0.12em
+  text-transform: uppercase
+  color: $color-meta
+  opacity: 0.65
+
+.exp-status
+  font-size: 10px
+  letter-spacing: 0.05em
+
+.exp-running
+  color: $color-accent-1
+
+.exp-building
+  color: #c8892a
+
+.exp-exploring
+  color: $color-link
+
+.exp-name
+  font-size: 15px
+  font-weight: 700
+  margin-bottom: 0.6rem
+  letter-spacing: -0.01em
+
+  a
+    background: none
+    color: $color-text
+    text-decoration: none
+    transition: color 0.2s ease
+
+    &:hover
+      color: $color-accent-1
+      background: none
+
+.exp-desc
+  font-size: 12px
+  color: $color-meta
+  line-height: 1.65
+  hyphens: none
+
+
+.proj-table
+  display: flex
+  flex-direction: column
+  border-top: 1px dotted $color-border
+
+a.proj-row
+  display: grid
+  grid-template-columns: 100px 1fr
+  grid-template-rows: auto auto
+  padding: 0.7rem 0.5rem
+  border-bottom: 1px dotted $color-border
+  text-decoration: none
+  background: none
+  background-image: none
+  gap: 0 0.75rem
+
+  &:hover
+    background: none
+    background-image: none !important
+
+    .proj-name
+      color: #ffffff
+
+.proj-name
+  font-size: 13px
+  font-weight: 700
+  color: $color-text
+  transition: color 0.2s ease
+  grid-column: 1
+  grid-row: 1
+  align-self: center
+  transition: color 0.2s ease
+  letter-spacing: -0.01em
+
+.proj-stack
+  font-size: 9px
+  letter-spacing: 0.1em
+  text-transform: uppercase
+  color: $color-meta
+  grid-column: 1
+  grid-row: 2
+  align-self: center
+  opacity: 0.6
+
+.proj-blurb
+  font-size: 12px
+  color: $color-meta
+  grid-column: 2
+  grid-row: 1 / span 2
+  align-self: center
+  line-height: 1.55
+
+.proj-arrow
+  font-size: 13px
+  color: $color-accent-1
+  grid-column: 3
+  grid-row: 1 / span 2
+  align-self: center
+  opacity: 0
+  transition: opacity 0.2s ease, transform 0.2s ease
 
 @media (min-width: 480px)
-  .post-list
-    .post-item
-      display: flex
-      margin-bottom: 5px
+  .proj-row
+    grid-template-columns: 110px 90px 1fr 20px
+    grid-template-rows: auto
 
-      .meta
-        text-align: left
+    .proj-name
+      grid-row: 1
 
-.project-list
+    .proj-stack
+      grid-column: 2
+      grid-row: 1
+
+    .proj-blurb
+      grid-column: 3
+      grid-row: 1
+
+    .proj-arrow
+      grid-column: 4
+      grid-row: 1
+
+// ── DISPATCHES ───────────────────────────────────────────────────
+
+.dispatch-list
   padding: 0
-  list-style: none
+  margin-bottom: 0.75rem
 
-  .project-item
-    margin-bottom: 5px
-    p
-      display: inline
+.dispatch-item
+  display: flex
+  flex-direction: column
+  padding: 0.55rem 0.5rem
+  border-bottom: 1px dotted $color-border
+  list-style: none
+  margin: 0
+  transition: background 0.15s ease, border-color 0.15s ease
+  border-radius: 2px
+  position: relative
+
+  &:first-child
+    border-top: 1px dotted $color-border
+
+  &:hover
+    background: none
+
+    .dispatch-title
+      color: #ffffff
+
+  .meta
+    font-size: 11px
+    color: $color-meta
+    margin-bottom: 0.15rem
+    letter-spacing: 0.02em
+
+  .dispatch-title
+    font-size: 13px
+    transition: color 0.2s ease
+
+@media (min-width: 480px)
+  .dispatch-item
+    flex-direction: row
+    align-items: baseline
+    gap: 1rem
+
+    .meta
+      min-width: 90px
+      flex-shrink: 0
+      margin-bottom: 0
+
+.dispatch-all
+  font-size: 11px
+  color: $color-meta
+  letter-spacing: 0.08em
+  display: inline-block
+  margin-top: 0.75rem
+  background: none
+  transition: color 0.2s ease, letter-spacing 0.2s ease
+
+  &:hover
+    color: $color-link
+    background: none
+    letter-spacing: 0.14em
+
+// ── FOOTER NOTE ──────────────────────────────────────────────────
+
+.home-footer-note
+  font-size: 10px
+  color: $color-meta
+  opacity: 0.4
+  letter-spacing: 0.12em
+  margin-top: 2rem
+  margin-bottom: 1rem
+  transition: opacity 0.3s ease
+
+  &:hover
+    opacity: 0.8
+
+  .hfn-bracket
+    color: $color-accent-1
+    margin-right: 0.4em

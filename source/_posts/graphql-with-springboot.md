@@ -12,7 +12,9 @@ I’ll do all that’s within my power, salut!😎😉
 
 PS: I have some exciting topics saved on my drafts, so yeah I’ve been cooking…
 
-Let’s talk about spring boot and the latest official release for graphQL 1.0. For the non-tech folks, no vex. But I’d try my best to explain this in layman's terms, so let’s go…
+Let’s talk about spring boot and the latest official release for graphQL 1.0. For the non-tech folks, no vex. But I’d try my best to explain this in layman’s terms, so let’s go…
+
+<!-- more -->
 
 GraphQL release became official following the recent release of springboot 2.7.0 see image attached below.
 

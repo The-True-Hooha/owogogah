@@ -1,143 +1,304 @@
-article
+// ================================================================
+// owogogah — post / article reading experience
+// ================================================================
+
+@keyframes post-fade-in
+  from
+    opacity: 0
+    transform: translateY(6px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+article.post
+  animation: post-fade-in 0.45s ease 0.05s both
+
+  // ── POST HEADER ────────────────────────────────────────────────
+
   header
-    .posttitle
-      margin-top: 0
-      margin-bottom: 0.5
-      text-transform: none
-      font-size: 1.5em
-      line-height: 1.25
+    margin-bottom: 2.5rem
+    padding-bottom: 2rem
+    border-bottom: 1px solid rgba(43, 188, 138, 0.15)
 
-    .meta
-      margin-top: 0
-      margin-bottom: 1rem
+  .post-eyebrow
+    font-size: 10px
+    letter-spacing: 0.2em
+    text-transform: uppercase
+    color: $color-accent-1
+    opacity: 0.7
+    margin-bottom: 0.75rem
 
-    .meta *
-      color: $color-accent-3
-      font-size: .85rem
+  .posttitle
+    font-size: 1.75rem
+    font-weight: 700
+    line-height: 1.2
+    letter-spacing: -0.02em
+    margin: 0 0 1rem 0
+    color: $color-text
 
-    .author
-      padding-top: 2px
-      text-transform: lowercase
-      letter-spacing: .01em
-      font-weight: 700
+  .meta
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    gap: 0.5rem 1rem
+    margin: 0
 
-    .postdate
-      display: inline
+  .meta *
+    font-size: 11px
+    color: $color-meta
+    letter-spacing: 0.04em
+
+  .author
+    display: none  // redundant on a personal site
+
+  .postdate
+    display: inline
+    time
+      color: $color-meta
+
+  .reading-time
+    color: $color-meta
+    font-size: 11px
+    opacity: 0.7
+    font-family: $font-family-mono
+
+  // ── CONTENT BODY ───────────────────────────────────────────────
 
   .content
-    h2:before
-      position: absolute
-      top: -4px
-      left: -1rem
-      color: $color-accent-1
-      content: "#"
-      font-weight: bold
-      font-size: 1.2rem
+    font-size: 14px
+    line-height: 1.85
 
-    img
-    video
+    h2, h3, h4
+      margin-top: 2.5rem
+      margin-bottom: 0.75rem
+      color: $color-text
+
+    h2
+      font-size: 1.15rem
+      font-weight: 700
+      letter-spacing: -0.01em
+      padding-left: 0.85rem
+      border-left: 2px solid $color-accent-1
+      position: relative
+
+      &:before
+        display: none  // kill the old # gutter marker
+
+    h3
+      font-size: 1rem
+      font-weight: 700
+      color: $color-accent-1
+      letter-spacing: 0.01em
+
+    h4
+      font-size: 0.9rem
+      font-weight: 700
+      color: $color-meta
+      text-transform: uppercase
+      letter-spacing: 0.08em
+
+    p
+      margin-bottom: 1.4rem
+      hyphens: none
+
+    a
+      color: $color-accent-1
+      background: none
+      border-bottom: 1px dotted rgba(43, 188, 138, 0.4)
+      transition: border-color 0.2s ease
+
+      &:hover
+        background: none
+        background-image: none
+        border-color: $color-accent-1
+
+    blockquote
+      margin: 1.5rem 0
+      padding: 0.85rem 1.1rem
+      border-left: 2px solid $color-accent-1
+      background: rgba(43, 188, 138, 0.04)
+      border-radius: 0 3px 3px 0
+      color: $color-text
+      font-style: normal
+      font-weight: normal
+      quotes: none
+
+      p
+        margin: 0
+        font-size: 13px
+        line-height: 1.7
+        color: $color-text
+        opacity: 0.85
+
+      &:before
+        display: none  // kill the giant quote mark
+
+      footer
+        margin-top: 0.5rem
+        font-size: 11px
+        color: $color-meta
+
+    ul, ol
+      padding-left: 1.25rem
+      margin-bottom: 1.4rem
+
+      li
+        margin-bottom: 0.35rem
+        line-height: 1.7
+
+    hr
+      border: none
+      border-top: 1px dotted rgba(144, 141, 141, 0.3)
+      margin: 2.5rem 0
+
+    img, video
       display: block
-      margin: auto
+      margin: 1.5rem auto
       max-width: 100%
       height: auto
+      border-radius: 3px
 
-    /* http://webdesignerwall.com/tutorials/css-elastic-videos */
+    .caption
+      display: block
+      text-align: center
+      font-size: 11px
+      color: $color-meta
+      margin-top: -1rem
+      margin-bottom: 1.5rem
+      opacity: 0.6
+
     .video-container
       position: relative
       overflow: hidden
-      padding-top: (9 / 16 * 100)% // 16:9 ratio
+      padding-top: (9 / 16 * 100)%
       height: 0
+      margin-bottom: 1.5rem
 
       iframe, object, embed
         position: absolute
         top: 0
         left: 0
-        margin-top: 0
         width: 100%
         height: 100%
 
-    blockquote
-      margin: 1rem 10px
-      padding: .5em 10px
-      background: inherit
-      color: $color-quote
-      quotes: "\201C" "\201D" "\2018" "\2019"
-      font-weight: bold
+  // ── TAGS ───────────────────────────────────────────────────────
 
-      p
-        margin: 0
-
-      &:before
-        margin-right: .25em
-        color: $color-quote
-        content: "\201C"
-        vertical-align: -.4em
-        font-size: 2em
-        line-height: .1em
-
-      footer
-        margin: line-height 0
-        color: $color-meta
-        font-size: 12px
-
-        a
-          background-image: linear-gradient(transparent, transparent 5px, $color-meta 5px, $color-meta)
-          color: $color-meta
-
-        a:hover
-          background-image: linear-gradient(transparent, transparent 4px, lighten($color-meta, 20%) 4px, lighten($color-meta, 20%))
-          color: lighten($color-meta, 20%)
-
-        cite
-          &:before
-            padding: 0 .5em
-            content: "—"
-
-    .pullquote
-      margin: 0
-      width: 45%
-      text-align: left
-
-      &.left
-        margin-right: 1em
-        margin-left: .5em
-
-      &.right
-        margin-right: .5em
-        margin-left: 1em
-
-    .caption
-      position: relative
-      display: block
-      margin-top: .5em
-      color: $color-meta
-      text-align: center
-      font-size: .9em
-
-.posttitle
-  text-transform: none
-  font-size: 1.5em
-  line-height: 1.25
-
-.article-tag
-  .tag-link
-    &:before
-      content: "#"
-    underline(10px, $color-link)
-
-.article-category
-  .category-link
-    underline(10px, $color-link)
-
-.reading-time {
-  color: #999;
-  font-size: 0.85rem;
-}
-
-@media (min-width: 480px)
-  .article-tag,
-  .article-category
+  .article-tag
     display: inline
 
     &:before
-      content: "|"
+      content: "·"
+      margin-right: 0.5rem
+      color: $color-meta
+      opacity: 0.4
+
+    .tag-link
+      font-size: 10px
+      letter-spacing: 0.08em
+      color: $color-meta
+      opacity: 0.6
+      text-decoration: none
+      padding: 1px 5px
+      border: 1px dotted rgba(144, 141, 141, 0.3)
+      border-radius: 2px
+      background: none
+      transition: color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease
+
+      &:before
+        content: none
+
+      &:hover
+        color: $color-accent-1
+        border-color: rgba(43, 188, 138, 0.4)
+        opacity: 1
+        background: none
+        background-image: none
+
+  .article-category
+    display: inline
+    font-size: 11px
+    color: $color-meta
+
+    .category-link
+      color: $color-meta
+      background: none
+
+// ── POST FOOTER ────────────────────────────────────────────────
+
+.post-footer
+  margin-top: 3rem
+  padding-top: 1.5rem
+  border-top: 1px solid rgba(43, 188, 138, 0.12)
+
+.post-nav
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+  gap: 1rem
+  margin-bottom: 1.5rem
+
+.post-nav-link
+  font-size: 11px
+  color: $color-meta
+  text-decoration: none
+  background: none
+  display: flex
+  flex-direction: column
+  gap: 0.2rem
+  max-width: 45%
+  transition: color 0.2s ease
+
+  &:hover
+    background: none
+    background-image: none
+    color: #ffffff
+
+    .pnl-title
+      color: #ffffff
+
+.post-nav-prev
+  align-items: flex-start
+
+.post-nav-next
+  align-items: flex-end
+  text-align: right
+
+.pnl-label
+  font-size: 9px
+  letter-spacing: 0.14em
+  text-transform: uppercase
+  color: $color-meta
+  opacity: 0.45
+
+.pnl-title
+  font-size: 12px
+  font-weight: 700
+  color: $color-text
+  transition: color 0.2s ease
+  line-height: 1.4
+
+.post-back
+  text-align: center
+
+  a
+    font-size: 10px
+    letter-spacing: 0.12em
+    color: $color-meta
+    opacity: 0.5
+    text-decoration: none
+    background: none
+    transition: color 0.2s ease, opacity 0.2s ease
+
+    &:hover
+      color: $color-accent-1
+      opacity: 1
+      background: none
+      background-image: none
+
+// ── GLOBAL POSTTITLE (outside article) ────────────────────────
+
+.posttitle
+  font-size: 1.5rem
+  font-weight: 700
+  line-height: 1.25
+  letter-spacing: -0.02em

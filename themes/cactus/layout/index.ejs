@@ -1,74 +1,186 @@
-<section id="about" class="p-note">
-  <% if (config.description) { %>
-    <%- markdown(config.description) %>
-  <% } %>
-  <% if (theme.social_links) { %>
-    <p>
-      <%= __('index.find_me_on') %>
-      <% var nb_links = theme.social_links.length %>
-      <% var i = 0 %>
+<%# ================================================================ %>
+<%# owogogah — homepage                                            %>
+<%# ================================================================ %>
+
+<div class="home-wrap">
+
+  <section id="identity" class="p-note home-identity">
+    <div class="ident-eyebrow">// init david.ogar</div>
+    <p class="ident-bio">
+      Semiconductors. Autonomous systems. AI.<br>
+      Dedicated to building
+      <a href="https://www.gogahlabstechnologies.com" target="_blank" rel="noopener">Gogah Labs</a>
+      — my own independent research lab. One brick at a time.
+    </p>
+    <div class="ident-status">
+      <span class="status-dot"></span>
+      <span>currently: <a href="https://www.semradr.com">building Semradr</a> - seeking discomfort; becoming the ice man</span>
+    </div>
+
+    <% if (theme.social_links) { %>
+    <div class="ident-social">
       <% for(var {label, icon, link} of theme.social_links) { %>
         <% var title = label || icon %>
         <% if (icon == 'mail') { %>
-          <a class="icon u-email" target="_blank" rel="noopener" href="<%- link %>" aria-label="<%- title %>" title="<%- title %>">
-            <i class="fa-solid fa-envelope"></i><!--
-      ---></a>
-        <% } else if (icon == 'rss') { %>
-          <a class="icon" target="_blank" rel="noopener" href="<%- link %>" aria-label="<%- title %>" title="<%- title %>">
-            <i class="fa-solid fa-rss"></i>
+          <a class="icon u-email soc-link" target="_blank" rel="noopener" href="<%- link %>" aria-label="<%- title %>" title="<%- title %>">
+            <i class="fa-solid fa-envelope"></i>
           </a>
         <% } else { %>
-          <a class="icon u-url" target="_blank" rel="noopener me" href="<%- url_for(link) %>" aria-label="<%- title %>" title="<%- title %>">
-            <i class="fa-brands fa-<%= icon %>"></i><!--
-      ---></a><!--
-    ---><% } %><!--
-    ---><%= ( nb_links > 0 && i < nb_links-1 ?
-            ( i == nb_links-2 ? ' '+__('index.enum_and')+' '
-            : __('index.enum_comma')+' ' )
-            : '.' ) %>
-        <% i+=1 %>
+          <a class="icon u-url soc-link" target="_blank" rel="noopener me" href="<%- url_for(link) %>" aria-label="<%- title %>" title="<%- title %>">
+            <i class="fa-brands fa-<%= icon %>"></i>
+          </a>
+        <% } %>
       <% } %>
-    </p>
-  <% } %>
-</section>
-
-<section id="writing">
-  <span class="h1"><a href="<%- url_for(theme.nav.articles) %>"><%= __('index.articles') %></a></span>
-  <% if (theme.tags_overview && site.tags.length) { %>
-  <span class="h2"><%= __('index.topics') %></span>
-  <span class="widget tagcloud">
-    <%- tagcloud(theme.tags_overview) %>
-  </span>
-  <span class="h2"><%= __('index.most_recent') %></span>
-  <% } %>
-  <ul class="post-list">
-    <% var field_sort = theme.posts_overview.sort_updated ? 'updated' : 'date' %>
-    <% if (theme.posts_overview.show_all_posts) { %>
-      <% var show_posts = page.posts.sort(field_sort, 'desc') %>
-    <% } else { %>
-      <% var show_posts = site.posts.sort(field_sort, 'desc').limit(theme.posts_overview.post_count || 5) %>
+    </div>
     <% } %>
-    <% show_posts.each(function(post, i){ %>
-      <li class="post-item">
-        <%- partial('_partial/post/date', { post: post, class_name: 'meta' }) %>
-        <span><%- partial('_partial/post/title', { post: post, index: true, class_name: '' }) %></span>
-      </li>
-    <% }); %>
-  </ul>
-  <% if (theme.posts_overview.show_all_posts) { %>
-    <%- partial('_partial/pagination') %>
-  <% } %>
-</section>
 
-<% if (site.data.projects) { %>
-<section id="projects">
-  <span class="h1"><a href="<%- url_for(theme.projects_url) %>"><%= __('index.projects') %></a></span>
-  <ul class="project-list">
-    <% for(var obj in site.data.projects){ %>
-      <li class="project-item">
-        <a href="<%= site.data.projects[obj].url %>"><%= site.data.projects[obj].name %></a>: <%- markdown(site.data.projects[obj].desc) %>
-      </li>
-    <% } %>
-  </ul>
-</section>
-<% } %>
+    <div class="sys-telemetry">
+      <span>CLK · 3.6GHz</span>
+      <span>VCC · 3.3V</span>
+      <span>ARCH · ARM64</span>
+      <span>MODE · autonomous</span>
+      <span>REG · 0xFF</span>
+    </div>
+  </section>
+
+  <div class="signal-trace" aria-hidden="true">
+    <svg viewBox="0 0 600 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,14 L18,14 L18,4 L36,4 L36,24 L54,24 L54,14 L90,14
+               L108,14 L126,7 L144,21 L162,7 L180,21 L198,14 L216,14
+               L216,4 L234,4 L234,24 L252,24 L252,14 L288,14
+               L306,14 L324,7 L342,21 L360,7 L378,21 L396,14 L414,14
+               L414,4 L432,4 L432,24 L450,24 L450,14 L486,14
+               L504,14 L522,9 L540,19 L558,9 L576,19 L594,14 L600,14"
+            stroke="#2bbc8a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="18" cy="4" r="1.5" fill="#2bbc8a" opacity="0.7"/>
+      <circle cx="216" cy="4" r="1.5" fill="#2bbc8a" opacity="0.7"/>
+      <circle cx="414" cy="4" r="1.5" fill="#2bbc8a" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <section class="home-section" id="experiments">
+    <div class="sec-header">
+      <span class="sec-bracket">[</span>active experiments<span class="sec-bracket">]</span>
+    </div>
+
+    <div class="token-stream" aria-hidden="true">
+      <div class="token-track">
+        <span>&lt;sys&gt;</span><span>0x4F2A</span><span>&lt;usr&gt;</span><span>embed[512]</span><span>attention</span><span>0xFF00</span><span>softmax</span><span>&lt;eos&gt;</span><span>logits</span><span>0xDEAD</span><span>forward_pass</span><span>&lt;pad&gt;</span><span>gradient</span><span>0xBEEF</span><span>&lt;cls&gt;</span><span>inference</span><span>kv_cache</span><span>0x0001</span><span>&lt;mask&gt;</span><span>transformer</span><span>q·k·v</span><span>0xC0DE</span><span>residual</span><span>layer_norm</span><span>0xFACE</span><span>&lt;bos&gt;</span><span>positional</span><span>0xABCD</span>
+        <span>&lt;sys&gt;</span><span>0x4F2A</span><span>&lt;usr&gt;</span><span>embed[512]</span><span>attention</span><span>0xFF00</span><span>softmax</span><span>&lt;eos&gt;</span><span>logits</span><span>0xDEAD</span><span>forward_pass</span><span>&lt;pad&gt;</span><span>gradient</span><span>0xBEEF</span><span>&lt;cls&gt;</span><span>inference</span><span>kv_cache</span><span>0x0001</span><span>&lt;mask&gt;</span><span>transformer</span><span>q·k·v</span><span>0xC0DE</span><span>residual</span><span>layer_norm</span><span>0xFACE</span><span>&lt;bos&gt;</span><span>positional</span><span>0xABCD</span>
+      </div>
+    </div>
+
+    <div class="exp-grid">
+
+      <div class="exp-card exp-card--live">
+        <div class="exp-meta">
+          <span class="exp-tag">decision intelligence</span>
+          <span class="exp-status exp-running">● live</span>
+        </div>
+        <div class="exp-name">
+          <a href="https://semardr.com" rel="noopener">Semradr</a>
+        </div>
+        <div class="exp-desc">
+          Stay ahead of your competitors.
+          Capture signals and make better decisions. Semradr doesn't add more data.
+          It tells you what the data means — and what to do about it.
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-meta">
+          <span class="exp-tag">ai research</span>
+          <span class="exp-status exp-building">◈ building</span>
+        </div>
+        <div class="exp-name">
+          <a href="https://www.aegis.owogogah.com" target="_blank" rel="noopener">Aegis</a>
+        </div>
+        <div class="exp-desc">
+          Aegis wraps your agent in a full evaluation harness — sandboxed execution, live LLM proxying, and CI-native reporting. Ship with confidence because you measured it.
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-meta">
+          <span class="exp-tag">observability · rust</span>
+          <span class="exp-status exp-exploring">◌ ideation</span>
+        </div>
+        <div class="exp-name">
+          <a href="https://loghaven.dev" target="_blank" rel="noopener">LogHaven</a>
+        </div>
+        <div class="exp-desc">
+          One agent. Any chain. Full control. Local-first observability for onchain and off-chain systems. No ingestion fees, no vendor lock-in, no surprises.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="home-section" id="projects">
+    <div class="sec-header">
+      <span class="sec-bracket">[</span>shipped<span class="sec-bracket">]</span>
+    </div>
+    <div class="proj-table">
+
+      <a class="proj-row" href="https://github.com/The-True-Hooha/pdf-knife" target="_blank" rel="noopener">
+        <span class="proj-name">pdf-knife</span>
+        <span class="proj-stack">browser · ext</span>
+        <span class="proj-blurb">auto-download PDFs, no friction</span>
+      </a>
+
+      <a class="proj-row" href="https://onyeego.com" target="_blank" rel="noopener">
+        <span class="proj-name">onyeego</span>
+        <span class="proj-stack">mobile · fintech</span>
+        <span class="proj-blurb">micro-transaction tracking for the everyday</span>
+      </a>
+
+      <a class="proj-row" href="https://github.com/The-True-Hooha/Bolt" target="_blank" rel="noopener">
+        <span class="proj-name">bolt</span>
+        <span class="proj-stack">cli · windows</span>
+        <span class="proj-blurb">Linux commands in a Windows world</span>
+      </a>
+
+      <a class="proj-row" href="https://github.com/The-True-Hooha/dom-explorer" target="_blank" rel="noopener">
+        <span class="proj-name">dom-explorer</span>
+        <span class="proj-stack">security · dns</span>
+        <span class="proj-blurb">domain security insight tool</span>
+      </a>
+
+      <a class="proj-row" href="https://rentn.vercel.app/" target="_blank" rel="noopener">
+        <span class="proj-name">rentn</span>
+        <span class="proj-stack">web · housing</span>
+        <span class="proj-blurb">find home rentals, simplified</span>
+      </a>
+
+      <a class="proj-row" href="https://github.com/The-True-Hooha/nft-data" target="_blank" rel="noopener">
+        <span class="proj-name">scrapper</span>
+        <span class="proj-stack">data · scraping</span>
+        <span class="proj-blurb">NFT data harvesting and JSON parsing</span>
+      </a>
+
+    </div>
+  </section>
+
+  <%# ── DISPATCHES (writing) ────────────────────────────────────── %>
+  <section class="home-section" id="writing">
+    <div class="sec-header">
+      <span class="sec-bracket">[</span>dispatches<span class="sec-bracket">]</span>
+    </div>
+    <ul class="post-list dispatch-list">
+      <% var show_posts = site.posts.sort('date', 'desc').limit(theme.posts_overview.post_count || 6) %>
+      <% show_posts.each(function(post){ %>
+        <li class="post-item dispatch-item">
+          <%- partial('_partial/post/date', { post: post, class_name: 'meta' }) %>
+          <span class="dispatch-title"><%- partial('_partial/post/title', { post: post, index: true, class_name: '' }) %></span>
+        </li>
+      <% }); %>
+    </ul>
+    <a class="dispatch-all" href="<%- url_for(theme.nav.articles) %>">all writing →</a>
+  </section>
+
+  <%# ── FOOTER NOTE ─────────────────────────────────────────────── %>
+  <div class="home-footer-note">
+    <span class="hfn-bracket">$</span> curiosity --flag=persistent --target=everything
+  </div>
+
+</div>

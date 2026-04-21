@@ -1,23 +1,38 @@
+// ── PAGINATION ───────────────────────────────────────────────────────
+
 .pagination
-  display: inline-block
-  margin-top: 2rem
-  width: 100%
-  text-align: center
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: 0.5rem
+  margin-top: 2.5rem
+  font-family: $font-family-mono
+  font-size: 11px
 
   .page-number
-    color: $color-text
-    font-size: .8rem
+    color: $color-meta
+    opacity: 0.5
+    padding: 0 0.5rem
 
   a
-    padding: 4px 6px
-    border-radius: 5px
-    // background-color: $color-accent-1
+    display: inline-block
+    padding: 4px 10px
+    color: $color-meta
+    background: none
     background-image: none
-    color: $color-text
+    border: 1px dotted rgba(144, 141, 141, 0.25)
+    border-radius: 2px
     text-decoration: none
+    transition: color 0.15s ease, border-color 0.15s ease
 
-  a:hover
-    background-image: none
+    &:hover
+      color: $color-accent-1
+      border-color: rgba(43, 188, 138, 0.4)
+      background: none
+      background-image: none
 
-  a:hover:not(.active)
-    color: $color-accent-2
+  .extend.prev:before
+    content: "← prev"
+
+  .extend.next:before
+    content: "next →"

@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Semradr",
+    "url": "https://www.semradr.com",
+    "github": "",
+    "live": "https://www.semradr.com",
+    "desc": "A decision intelligence layer for creators and teams. The hardest part of creating isn't the idea — it's the signal-to-noise problem. Semradr doesn't add more data. It tells you what the data means — and what to do about it.",
+    "stack": ["typescript", "distributed systems", "AI"],
+    "status": "active",
+    "statusLabel": "● live"
+  },
+  {
+    "name": "Aegis",
+    "url": "https://www.aegis.owogogah.com",
+    "github": "",
+    "live": "https://www.aegis.owogogah.com",
+    "desc": "AI agent evaluation harness — sandboxed execution, live LLM proxying, and CI-native reporting. Wrap your agent in a full eval suite. Ship with confidence because you measured it.",
+    "stack": ["AI", "rust", "evaluation"],
+    "status": "active",
+    "statusLabel": "◈ building"
+  },
+  {
+    "name": "LogHaven",
+    "url": "https://loghaven.dev",
+    "github": "",
+    "live": "https://loghaven.dev",
+    "desc": "Local-first observability for onchain and off-chain systems. One agent. Any chain. Full control. No ingestion fees, no vendor lock-in, no surprises.",
+    "stack": ["rust", "observability", "onchain"],
+    "status": "exploring",
+    "statusLabel": "◌ ideation"
+  },
+  {
+    "name": "PDF Knife",
+    "url": "https://github.com/The-True-Hooha/pdf-knife",
+    "github": "https://github.com/The-True-Hooha/pdf-knife",
+    "live": "",
+    "desc": "Browser extension that automatically downloads PDFs the moment they open. No clicks, no friction, no losing the tab.",
+    "stack": ["browser extension", "javascript"],
+    "status": "shipped",
+    "statusLabel": "✓ shipped"
+  },
+  {
+    "name": "Onyeego",
+    "url": "https://onyeego.com",
+    "github": "",
+    "live": "https://onyeego.com",
+    "desc": "Mobile app for safely tracking and organizing micro-transactions. Built for the everyday reality of informal finance. Coming to PlayStore and AppStore.",
+    "stack": ["mobile", "react native", "fintech"],
+    "status": "shipped",
+    "statusLabel": "✓ shipped"
+  },
+  {
+    "name": "Bolt",
+    "url": "https://github.com/The-True-Hooha/Bolt",
+    "github": "https://github.com/The-True-Hooha/Bolt",
+    "live": "",
+    "desc": "Run Linux commands natively from a Windows command prompt. For the developer stuck on Windows who doesn't want to give up their Linux muscle memory.",
+    "stack": ["cli", "windows", "go"],
+    "status": "shipped",
+    "statusLabel": "✓ shipped"
+  },
+  {
+    "name": "Fluid Sim",
+    "url": "https://github.com/The-True-Hooha/fluid_sim",
+    "github": "https://github.com/The-True-Hooha/fluid_sim",
+    "live": "",
+    "desc": "Fluid dynamics simulation in Python. An exploration of Navier-Stokes equations through code — where physics becomes something you can run, visualize, and break.",
+    "stack": ["python", "simulation", "numerical methods"],
+    "status": "exploring",
+    "statusLabel": "◌ exploring"
+  },
+  {
+    "name": "Dom Explorer",
+    "url": "https://github.com/The-True-Hooha/dom-explorer",
+    "github": "https://github.com/The-True-Hooha/dom-explorer",
+    "live": "",
+    "desc": "Domain security insight tool. Point it at a domain and understand what's really going on underneath — DNS records, exposure, security posture.",
+    "stack": ["security", "dns", "node"],
+    "status": "shipped",
+    "statusLabel": "✓ shipped"
+  },
+  {
+    "name": "Rentn",
+    "url": "https://rentn.vercel.app/",
+    "github": "https://github.com/The-True-Hooha/rentn",
+    "live": "https://rentn.vercel.app/",
+    "desc": "Find your ideal rental home in a few clicks. The housing search experience, rebuilt from scratch without the noise.",
+    "stack": ["react", "next.js", "web"],
+    "status": "shipped",
+    "statusLabel": "✓ shipped"
+  },
+  {
+    "name": "Scrapper",
+    "url": "https://github.com/The-True-Hooha/nft-data",
+    "github": "https://github.com/The-True-Hooha/nft-data",
+    "live": "",
+    "desc": "Web scraper and JSON parser built to harvest and structure large NFT datasets. An exercise in data pipeline engineering at scale.",
+    "stack": ["typescript", "puppeteer", "data"],
+    "status": "archived",
+    "statusLabel": "□ archived"
+  }
+]

@@ -1,7 +1,49 @@
-<section id="search">
-  <form>
-    <input type="text" class="search-input" id="search-input" placeholder="<%= __('search.search') %>">
-  </form>
-  <div id="search-result"></div>
-  <p class="search-no-result"><%= __('search.no_results') %></p>
-</section>
+<div class="search-wrap">
+
+  <div class="search-header">
+    <div class="search-eyebrow">// signals</div>
+    <p class="search-hint">search across all dispatches and experiments</p>
+  </div>
+
+  <div class="search-input-wrap">
+    <span class="search-prompt">›</span>
+    <input
+      type="text"
+      class="search-input"
+      id="search-input"
+      placeholder="type to scan..."
+      autocomplete="off"
+      spellcheck="false"
+    >
+    <span class="search-cursor"></span>
+  </div>
+
+  <div id="search-result" class="search-result-wrap"></div>
+
+  <p class="search-no-result">
+    <span class="snr-icon">◌</span>
+    no signal. try different terms.
+  </p>
+
+  <div class="search-idle" id="search-idle">
+    <div class="search-idle-line"><span class="sil-key">index</span><span class="sil-val"><%= site.posts.length %> posts loaded</span></div>
+    <div class="search-idle-line"><span class="sil-key">scope</span><span class="sil-val">titles · content · tags</span></div>
+    <div class="search-idle-line"><span class="sil-key">mode</span><span class="sil-val">local · no network required</span></div>
+    <div class="search-idle-line"><span class="sil-key">status</span><span class="sil-val"><span class="sil-ready">● ready</span></span></div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  // auto-focus input on load
+  var input = document.getElementById('search-input');
+  var idle  = document.getElementById('search-idle');
+  if (input) {
+    setTimeout(function() { input.focus(); }, 100);
+    input.addEventListener('input', function() {
+      if (idle) idle.style.display = this.value.trim() ? 'none' : 'flex';
+    });
+  }
+})();
+</script>

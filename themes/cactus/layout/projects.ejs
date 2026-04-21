@@ -1,0 +1,99 @@
+<%
+  var projects = site.data.projects || [];
+  var statuses = ['all', 'active', 'exploring', 'shipped', 'archived'];
+  var counts   = { all: projects.length, active: 0, exploring: 0, shipped: 0, archived: 0 };
+  projects.forEach(function(p) { if (counts[p.status] !== undefined) counts[p.status]++; });
+%>
+
+<div class="projects-wrap">
+  <div class="projects-header">
+    <div class="projects-eyebrow">// projects</div>
+    <div class="projects-meta-row">
+      <span class="projects-total"><%= counts.all %> projects</span>
+      <span class="projects-sep">·</span>
+      <span class="projects-breakdown">
+        <span class="pb-active"><%= counts.active %> active</span>
+        <span class="projects-sep">·</span>
+        <span><%= counts.exploring %> exploring</span>
+        <span class="projects-sep">·</span>
+        <span><%= counts.shipped %> shipped</span>
+      </span>
+    </div>
+  </div>
+
+  <%# ── FILTER TABS ─────────────────────────────────────────────── %>
+  <div class="projects-filters" role="tablist">
+    <% statuses.forEach(function(s) { %>
+      <button
+        class="pf-tab <%= s === 'all' ? 'pf-active' : '' %>"
+        data-filter="<%= s %>"
+        role="tab"
+        aria-selected="<%= s === 'all' %>"
+      ><%= s %><span class="pf-count"><%= counts[s] %></span></button>
+    <% }); %>
+  </div>
+
+  <%# ── PROJECT LIST ────────────────────────────────────────────── %>
+  <div class="projects-list" id="projects-list">
+    <% projects.forEach(function(proj, i) { %>
+      <div class="proj-card" data-status="<%= proj.status %>">
+
+        <div class="proj-card-header">
+          <div class="proj-card-left">
+            <span class="proj-card-idx">/<%= String(i + 1).padStart(2, '0') %></span>
+            <a class="proj-card-name" href="<%= proj.url %>"<%= proj.url.startsWith('http') ? ' target="_blank" rel="noopener"' : '' %>><%= proj.name %></a>
+          </div>
+          <div class="proj-card-right">
+            <span class="proj-card-status pcs-<%= proj.status %>"><%= proj.statusLabel %></span>
+          </div>
+        </div>
+
+        <p class="proj-card-desc"><%= proj.desc %></p>
+
+        <div class="proj-card-footer">
+          <div class="proj-card-stack">
+            <% proj.stack.forEach(function(tag) { %>
+              <span class="proj-stack-tag"><%= tag %></span>
+            <% }); %>
+          </div>
+          <div class="proj-card-links">
+            <% if (proj.live) { %>
+              <a href="<%= proj.live %>" target="_blank" rel="noopener" class="proj-link proj-link-live">live →</a>
+            <% } %>
+            <% if (proj.github) { %>
+              <a href="<%= proj.github %>" target="_blank" rel="noopener" class="proj-link proj-link-gh"><i class="fa-brands fa-github"></i> github</a>
+            <% } %>
+          </div>
+        </div>
+
+      </div>
+    <% }); %>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var tabs    = document.querySelectorAll('.pf-tab');
+  var cards   = document.querySelectorAll('.proj-card');
+  var current = 'all';
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var filter = tab.dataset.filter;
+      if (filter === current) return;
+      current = filter;
+
+      tabs.forEach(function(t) {
+        t.classList.toggle('pf-active', t.dataset.filter === filter);
+        t.setAttribute('aria-selected', t.dataset.filter === filter);
+      });
+
+      cards.forEach(function(card) {
+        var match = filter === 'all' || card.dataset.status === filter;
+        card.classList.toggle('proj-card-hidden', !match);
+      });
+    });
+  });
+})();
+</script>

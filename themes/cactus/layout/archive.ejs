@@ -1,20 +1,84 @@
-<div id="archive">
-  <ul class="post-list">
-    <% var year = 0 %>
-    <% var change = false %>
-    <% var field_sort = theme.archive.sort_updated ? 'updated' : 'date' %>
-    <% page.posts.sort(field_sort, 'desc').each(function(post) { %>
-      <% var itemYear = date(post[field_sort], 'YYYY') %>
-      <% change = year !== itemYear %>
-      <% year = change ? itemYear : year %>
-      <% if (change) { %>
-        <li class="post-year"><h2><%= year %></h2></li>
-      <% } %>
-      <li class="post-item">
-        <%- partial('_partial/post/date', { post: post, class_name: 'meta' }) %>
-        <span><%- partial('_partial/post/title', { post: post, index: true, class_name: '' }) %></span>
-      </li>
-    <% }); %>
-  </ul>
+<%# ================================================================ %>
+<%# owogogah — archive / signal log                                %>
+<%# ================================================================ %>
+
+<%
+  var field_sort = theme.archive.sort_updated ? 'updated' : 'date';
+  var allPosts   = page.posts.sort(field_sort, 'desc');
+  var totalPosts = site.posts.length;
+
+  // group posts by year
+  var years = {};
+  allPosts.each(function(post) {
+    var y = date(post[field_sort], 'YYYY');
+    if (!years[y]) years[y] = [];
+    years[y].push(post);
+  });
+  var yearKeys = Object.keys(years).sort(function(a,b){ return b - a; });
+
+  // reading time helper (200 wpm)
+  function readTime(post) {
+    var text  = (post.content || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    var words = text ? text.split(' ').length : 0;
+    var mins  = Math.max(1, Math.ceil(words / 200));
+    return mins + ' min';
+  }
+%>
+
+<div id="archive" class="archive-wrap">
+
+  <%# ── HEADER ──────────────────────────────────────────────────── %>
+  <div class="archive-header">
+    <div class="archive-eyebrow">// signal archive</div>
+    <div class="archive-meta-row">
+      <span class="archive-count"><%= totalPosts %> dispatches</span>
+      <span class="archive-sep">·</span>
+      <span class="archive-since">since <%= yearKeys[yearKeys.length - 1] %></span>
+    </div>
+  </div>
+
+  <%# ── YEAR GROUPS ─────────────────────────────────────────────── %>
+  <% yearKeys.forEach(function(y) { %>
+    <div class="archive-year-block">
+
+      <div class="archive-year-header">
+        <span class="archive-bracket">[</span><span class="archive-year-num"><%= y %></span><span class="archive-bracket">]</span>
+        <span class="archive-year-count"><%= years[y].length %> post<%= years[y].length !== 1 ? 's' : '' %></span>
+      </div>
+
+      <ul class="archive-post-list">
+        <% years[y].forEach(function(post) { %>
+          <li class="archive-post-item">
+
+            <span class="archive-post-date">
+              <time datetime="<%= date_xml(post[field_sort]) %>"><%= date(post[field_sort], 'MM-DD') %></time>
+            </span>
+
+            <span class="archive-post-title">
+              <% if (post.link) { %>
+                <a href="<%- url_for(post.link) %>" target="_blank"><%= post.title %></a>
+              <% } else { %>
+                <a href="<%- url_for(post.path) %>"><%= post.title || 'Untitled' %></a>
+              <% } %>
+            </span>
+
+            <span class="archive-post-tags">
+              <% if (post.tags && post.tags.length) { %>
+                <% post.tags.each(function(tag) { %>
+                  <a class="archive-tag" href="<%- url_for('/tags/' + tag.name) %>"><%= tag.name %></a>
+                <% }); %>
+              <% } %>
+            </span>
+
+            <span class="archive-post-time"><%= readTime(post) %></span>
+
+          </li>
+        <% }); %>
+      </ul>
+
+    </div>
+  <% }); %>
+
   <%- partial('_partial/pagination') %>
+
 </div>

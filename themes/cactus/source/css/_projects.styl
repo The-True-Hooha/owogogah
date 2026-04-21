@@ -1,85 +1,251 @@
-.page.projects,
-.post .content  
+// ================================================================
+// owogogah — project registry styles
+// ================================================================
 
-// _projects.styl
+@keyframes proj-fade-up
+  from
+    opacity: 0
+    transform: translateY(8px)
+  to
+    opacity: 1
+    transform: translateY(0)
 
-.post-content
-  max-width: 1200px
-  margin: 0 auto
-  padding: 0 1rem
+@keyframes proj-card-in
+  from
+    opacity: 0
+    transform: translateY(6px)
+  to
+    opacity: 1
+    transform: translateY(0)
 
-  main
-    display: grid
-    grid-template-columns: repeat(3, 1fr)
-    gap: 1rem
-    margin-top: 1rem
+.projects-wrap
+  padding-top: 0.25rem
 
-  // Article/project styling
-  article
-    display: flex
-    flex-direction: column
-    //gap: 0.25rem          // Reduced gap between elements
-    padding: 1rem
-    border-radius: 0.5rem
-    transition: all 0.2s ease-in-out  // Smooth transition for hover effects
-    
-    &:hover
-      background: rgba(0, 0, 0, 0.02)  // Subtle hover effect
-      transform: translateY(-2px)      // Slight lift effect
+// ── HEADER ───────────────────────────────────────────────────────
 
-    // Project title
-    h3
-      font-size: 1.125rem
-      font-weight: 500
-      margin-bottom: 0.25rem          // Reduced margin
-      a
-        color: inherit
-        text-decoration: none
-        transition: color 0.2s ease
-        &:hover
-          color: #3ea87c              // Accent color (matching your nav)
-    
-    // Project description
-    div
-      color: #666
-      font-size: 0.95rem
-      line-height: 1.5
-      margin-bottom: 0.5rem
+.projects-header
+  margin-bottom: 2rem
+  padding-bottom: 1.5rem
+  border-bottom: 1px solid rgba(43, 188, 138, 0.15)
+  opacity: 0
+  animation: proj-fade-up 0.4s ease 0.05s forwards
 
-    // Links list
-    ul
-      display: flex
-      gap: 1rem
-      margin-top: auto               // Push links to bottom
-      font-size: 0.875rem
-      opacity: 0.8
-      font-weight: 500
-      
-      li a
-        color: #3ea87c               // Accent color for links
-        text-decoration: none
-        transition: all 0.2s ease
-        padding: 0.25rem 0
-        border-bottom: 1px solid transparent
-        &:hover
-          border-bottom-color: #3ea87c
-          opacity: 1
+.projects-eyebrow
+  font-size: 10px
+  letter-spacing: 0.2em
+  text-transform: uppercase
+  color: $color-accent-1
+  opacity: 0.7
+  margin-bottom: 0.5rem
 
-  // Dark mode support
-  @media (prefers-color-scheme: dark)
-    article
-      &:hover
-        background: rgba(255, 255, 255, 0.05)
-      div
-        color: #999
-      a:hover
-        color: #4ec891              // Lighter accent for dark mode
+.projects-meta-row
+  display: flex
+  align-items: center
+  gap: 0.6rem
+  flex-wrap: wrap
+  font-size: 12px
+  color: $color-meta
 
-  // Responsive breakpoints
-  @media screen and (max-width: 1024px)
-    main
-      grid-template-columns: repeat(2, 1fr)
-  
-  @media screen and (max-width: 768px)
-    main
-      grid-template-columns: 1fr
+.projects-total
+  font-weight: 700
+  color: $color-text
+
+.projects-sep
+  opacity: 0.4
+
+.pb-active
+  color: $color-accent-1
+
+// ── FILTER TABS ──────────────────────────────────────────────────
+
+.projects-filters
+  display: flex
+  flex-wrap: wrap
+  gap: 0.4rem
+  margin-bottom: 2rem
+  opacity: 0
+  animation: proj-fade-up 0.4s ease 0.12s forwards
+
+.pf-tab
+  display: inline-flex
+  align-items: center
+  gap: 0.35rem
+  padding: 0.3rem 0.7rem
+  font-family: $font-family-mono
+  font-size: 10px
+  letter-spacing: 0.1em
+  text-transform: lowercase
+  color: $color-meta
+  background: none
+  border: 1px dotted rgba(144, 141, 141, 0.3)
+  border-radius: 2px
+  cursor: pointer
+  transition: color 0.15s ease, border-color 0.15s ease
+
+  &:hover
+    color: $color-text
+    border-color: rgba(144, 141, 141, 0.6)
+
+  &.pf-active
+    color: $color-accent-1
+    border-color: rgba(43, 188, 138, 0.5)
+    border-style: solid
+
+.pf-count
+  font-size: 9px
+  opacity: 0.5
+
+// ── PROJECT LIST ─────────────────────────────────────────────────
+
+.projects-list
+  display: flex
+  flex-direction: column
+  border-top: 1px solid rgba(43, 188, 138, 0.12)
+
+.proj-card
+  padding: 1.1rem 0.75rem
+  border-bottom: 1px solid rgba(43, 188, 138, 0.08)
+  transition: background 0.18s ease
+  position: relative
+  opacity: 0
+  animation: proj-card-in 0.4s ease forwards
+
+  &:nth-child(1)  { animation-delay: 0.18s }
+  &:nth-child(2)  { animation-delay: 0.22s }
+  &:nth-child(3)  { animation-delay: 0.26s }
+  &:nth-child(4)  { animation-delay: 0.30s }
+  &:nth-child(5)  { animation-delay: 0.34s }
+  &:nth-child(6)  { animation-delay: 0.38s }
+  &:nth-child(7)  { animation-delay: 0.42s }
+  &:nth-child(8)  { animation-delay: 0.46s }
+  &:nth-child(9)  { animation-delay: 0.50s }
+  &:nth-child(10) { animation-delay: 0.54s }
+
+  &::before
+    content: ""
+    position: absolute
+    top: 8px
+    left: 8px
+    width: 8px
+    height: 8px
+    border-top: 1.5px solid $color-accent-1
+    border-left: 1.5px solid $color-accent-1
+    opacity: 0
+    transition: opacity 0.2s ease
+
+  &:hover
+    background: rgba(43, 188, 138, 0.03)
+
+    &::before
+      opacity: 1
+
+    .proj-card-name
+      color: #ffffff
+
+  &.proj-card-hidden
+    display: none
+
+.proj-card-header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin-bottom: 0.6rem
+  gap: 1rem
+
+.proj-card-left
+  display: flex
+  align-items: center
+  gap: 0.6rem
+  min-width: 0
+
+.proj-card-idx
+  font-size: 9px
+  color: $color-meta
+  opacity: 0.3
+  letter-spacing: 0.05em
+  flex-shrink: 0
+
+.proj-card-name
+  font-size: 15px
+  font-weight: 700
+  color: $color-text
+  text-decoration: none
+  background: none
+  letter-spacing: -0.01em
+  transition: color 0.2s ease
+
+  &:hover
+    color: #ffffff
+    background: none
+    background-image: none
+
+.proj-card-right
+  flex-shrink: 0
+
+.proj-card-status
+  font-size: 10px
+  letter-spacing: 0.05em
+  white-space: nowrap
+
+.pcs-active
+  color: $color-accent-1
+
+.pcs-exploring
+  color: #c8892a
+
+.pcs-shipped
+  color: $color-meta
+  opacity: 0.6
+
+.pcs-archived
+  color: $color-meta
+  opacity: 0.35
+
+.proj-card-desc
+  font-size: 12px
+  color: $color-meta
+  line-height: 1.7
+  margin-bottom: 0.85rem
+  hyphens: none
+  max-width: 52rem
+
+.proj-card-footer
+  display: flex
+  align-items: center
+  justify-content: space-between
+  flex-wrap: wrap
+  gap: 0.5rem
+
+.proj-card-stack
+  display: flex
+  flex-wrap: wrap
+  gap: 0.3rem
+
+.proj-stack-tag
+  font-size: 9px
+  letter-spacing: 0.08em
+  color: $color-meta
+  opacity: 0.5
+  padding: 1px 5px
+  border: 1px dotted rgba(144, 141, 141, 0.25)
+  border-radius: 2px
+
+.proj-card-links
+  display: flex
+  align-items: center
+  gap: 0.85rem
+
+.proj-link
+  font-size: 10px
+  letter-spacing: 0.08em
+  color: $color-meta
+  text-decoration: none
+  background: none
+  opacity: 0.55
+  transition: color 0.15s ease, opacity 0.15s ease
+
+  &:hover
+    color: $color-accent-1
+    opacity: 1
+    background: none
+    background-image: none

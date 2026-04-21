@@ -23,6 +23,8 @@ I’m writing this to clearly document:
 
 Think of this as a proof-of-work — not promises.
 
+<!-- more -->
+
 ![idea-phase](/images/building-semradr-1/1.png "idea-phase")
 
 ---

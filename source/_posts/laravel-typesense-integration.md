@@ -9,6 +9,8 @@ tags: [php, typesense, laravel]
 
 [Typesense](https://typesense.org/) offers a number of options to integrate with different tech stacks, and you may have noticed that both internal and external communities are working around the clock to make that a reality. Numerous use cases can also be found in your preferred language or framework of your choice. The integration of Typesense with Laradock and Laravel Scout will be covered in this particular article.
 
+<!-- more -->
+
 If you are reading this and still unfamiliar with Typesense, here’s a short intro:
 
 > A modern, privacy-friendly and open source search engine built from the ground up using cutting-edge search algorithms, that take advantage of the latest advances in hardware capabilities.

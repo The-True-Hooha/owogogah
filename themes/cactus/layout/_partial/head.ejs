@@ -1,4 +1,14 @@
 <head>
+    <!--
+      you found it.
+      the stack goes deeper than the docs.
+
+      4f 77 6f 67 6f 67 61 68 20 2f 2f 20 47 6f 67 61 68 20 4c 61 62 73
+      semiconductors · autonomous systems · ai · distributed systems
+
+      try pressing ` (backtick) on the homepage.
+      or: ↑ ↑ ↓ ↓ ← → ← → b a
+    -->
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,8 +20,14 @@
         fb_admins:      theme.open_graph.fb_admins,
         twitter_id:     theme.open_graph.twitter_id,
         google_plus:    theme.open_graph.google_plus,
+        description:    page.excerpt || page.description || config.description,
+        twitter_card:   'summary',
     }) %>
     <%- meta(page) %>
+    <meta name="author" content="<%= config.author %>">
+    <% if (config.keywords) { %>
+    <meta name="keywords" content="<%= page.tags ? page.tags.map(t => t.name).join(', ') : config.keywords %>">
+    <% } %>
     <% if (theme.favicon) { %>
       <% if (theme.favicon.desktop) { %>
         <% if (theme.gravatar && (theme.gravatar.email || theme.gravatar.hash) && theme.favicon.desktop.gravatar) { %>

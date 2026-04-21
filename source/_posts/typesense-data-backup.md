@@ -9,6 +9,8 @@ tags: [typesense, node, javascript]
 
 In software development, creating data backups is an important and safe practice in the software development cycle process. The data is typically stored on the same device or cloud storage. This system approach is used in the software process to restore the system or data in a particular directory at a specific time to any previous state of the system.
 
+<!-- more -->
+
 Typsense creates data backup by means of snapshots that can be implemented with a single API call. Cluster operations can be utilized for these backup processes. Snapshot backups define where and how your data is stored, or organized. cluster backups can be created from snapshots from a Typesense node state and the data in the specified directory can be really efficient for rapid recovery as a data directory when it is needed.
 
 ## Why backup is needed

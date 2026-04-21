@@ -1,9 +1,14 @@
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-    <%- partial('_partial/post/gallery') %>
-    <div class="content" itemprop="articleBody">
-        <% if (theme.error_404.enabled && theme.error_404.title && theme.error_404.description ) { %>
-            <h1><%= theme.error_404.title %></h1>
-            <p><%= theme.error_404.description %></p>
-        <% } %>
-    </div>
-</article>
+<div class="notfound-wrap">
+  <div class="notfound-code">404</div>
+  <div class="notfound-title">signal lost</div>
+  <div class="notfound-msg">
+    This page doesn't exist — maybe it was an experiment that didn't ship,
+    or a path that hasn't been built yet.<br><br>
+    <a href="/">← back to home</a> &nbsp;&middot;&nbsp;
+    <a href="/archives">browse writing</a> &nbsp;&middot;&nbsp;
+    <a href="/projects">see projects</a>
+  </div>
+  <div class="notfound-footer">
+    <span class="notfound-cmd">$ find / -name "this-page" 2&gt;/dev/null</span>
+  </div>
+</div>

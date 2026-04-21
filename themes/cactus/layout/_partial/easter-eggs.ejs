@@ -1,0 +1,322 @@
+<%# ================================================================ %>
+<%# owogogah — easter eggs: terminal, bios boot, cursor, progress  %>
+<%# ================================================================ %>
+
+<%# ── HIDDEN TERMINAL OVERLAY ──────────────────────────────────── %>
+<div id="lab-terminal" aria-hidden="true">
+  <div class="lt-inner">
+    <div class="lt-titlebar">
+      <span class="lt-dot lt-dot-red"></span>
+      <span class="lt-dot lt-dot-yellow"></span>
+      <span class="lt-dot lt-dot-green"></span>
+      <span class="lt-title">owogogah@lab: ~</span>
+    </div>
+    <div class="lt-body" id="lt-body">
+      <div class="lt-welcome">// hidden terminal — type <span class="t-green">help</span> for commands &nbsp;·&nbsp; <span class="t-dim">esc to close</span></div>
+    </div>
+    <div class="lt-input-row">
+      <span class="lt-prompt">owogogah@lab:~$&nbsp;</span>
+      <input type="text" id="lt-input" autocomplete="off" spellcheck="false" aria-label="terminal input" />
+    </div>
+  </div>
+</div>
+
+<%# ── BIOS BOOT OVERLAY ────────────────────────────────────────── %>
+<div id="bios-overlay" aria-hidden="true">
+  <pre id="bios-out"></pre>
+</div>
+
+<%# ── CURSOR NODE ─────────────────────────────────────────────── %>
+<div id="cursor-node" aria-hidden="true"></div>
+
+<%# ── READING PROGRESS BAR ────────────────────────────────────── %>
+<div id="read-progress" aria-hidden="true"><div id="read-bar"></div></div>
+
+<script>
+(function () {
+  // ── TERMINAL ────────────────────────────────────────────────────
+  var COMMANDS = {
+    'whoami': [
+      'david ogar — software engineer · builder · researcher',
+      '<span class="t-dim">gogah labs:</span> <span class="t-green">active</span>   <span class="t-dim">semradr:</span> <span class="t-green">live</span>   <span class="t-dim">curiosity:</span> <span class="t-green">persistent</span>',
+      '<span class="t-dim">currently: seeking discomfort. becoming the ice man.</span>'
+    ],
+    'ls': [
+      '<span class="t-green">about/</span>  <span class="t-green">archives/</span>  <span class="t-green">projects/</span>  <span class="t-green">now/</span>  <span class="t-green">search/</span>'
+    ],
+    'ls projects': [
+      'semradr/       aegis/         loghaven/',
+      'pdf-knife/     onyeego/       bolt/',
+      'fluid-sim/     dom-explorer/  rentn/   scrapper/'
+    ],
+    'cat about.txt': [
+      'curious. persistent. one brick at a time.',
+      'building at the intersection of software,',
+      'semiconductors, and autonomous systems.',
+      '',
+      '<span class="t-dim">"I own nothing, but the will to see Christ</span>',
+      '<span class="t-dim"> manifested in my domain."</span>'
+    ],
+    'ping gogahlabs': [
+      'PING gogahlabs.com (104.21.0.1): 56 bytes of data',
+      '64 bytes: seq=0 ttl=64 time=0.041ms <span class="t-green">✓</span>',
+      '64 bytes: seq=1 ttl=64 time=0.038ms <span class="t-green">✓</span>',
+      '64 bytes: seq=2 ttl=64 time=0.039ms <span class="t-green">✓</span>',
+      '<span class="t-dim">--- 3 packets transmitted, 3 received, 0% packet loss ---</span>'
+    ],
+    './semradr --status': [
+      '<span class="t-green">[semradr]</span> version: 0.4.2-beta',
+      '<span class="t-green">[semradr]</span> mode: decision intelligence',
+      '<span class="t-green">[semradr]</span> signal ingestion: <span class="t-green">████████░░</span> 82%',
+      '<span class="t-green">[semradr]</span> inference engine: <span class="t-green">running</span>',
+      '<span class="t-green">[semradr]</span> status: building in public'
+    ],
+    'uname -a': [
+      'GogahOS 1.0.0 ARM64 #1 SMP curiosity-driven autonomous-systems semiconductors ai'
+    ],
+    'top': [
+      '<span class="t-dim">PID   PROCESS              CPU%   MEM</span>',
+      '001   semradr.service      38.2   512MB',
+      '002   gogahlabs.service    21.4   256MB',
+      '003   curiosity.service    99.9   ∞',
+      '004   sleep.service         0.0   0MB',
+      '<span class="t-dim">(q to quit — just kidding, type exit)</span>'
+    ],
+    'cat /etc/motd': [
+      '',
+      '  <span class="t-green">▓▓▓</span> GOGAH LABS — RESEARCH TERMINAL <span class="t-green">▓▓▓</span>',
+      '',
+      '  "The boring fundamentals are the exciting ones."',
+      '  — the stack goes deeper than the docs.',
+      ''
+    ],
+    'help': [
+      '<span class="t-dim">available commands:</span>',
+      '  <span class="t-green">whoami</span>              identity check',
+      '  <span class="t-green">ls [projects]</span>       list contents',
+      '  <span class="t-green">cat about.txt</span>       read about file',
+      '  <span class="t-green">cat /etc/motd</span>       message of the day',
+      '  <span class="t-green">ping gogahlabs</span>      connectivity check',
+      '  <span class="t-green">./semradr --status</span>  check semradr',
+      '  <span class="t-green">uname -a</span>            system info',
+      '  <span class="t-green">top</span>                 running processes',
+      '  <span class="t-green">clear</span>               clear terminal',
+      '  <span class="t-green">exit</span>                close terminal'
+    ],
+    'clear': ['__clear__'],
+    'exit':  ['__exit__']
+  };
+
+  var terminal  = document.getElementById('lab-terminal');
+  var ltBody    = document.getElementById('lt-body');
+  var ltInput   = document.getElementById('lt-input');
+
+  function appendLine(html) {
+    var div = document.createElement('div');
+    div.className = 'lt-line';
+    div.innerHTML = html;
+    ltBody.appendChild(div);
+    ltBody.scrollTop = ltBody.scrollHeight;
+  }
+
+  function runCommand(raw) {
+    var cmd = raw.trim();
+    appendLine('<span class="lt-prompt">owogogah@lab:~$&nbsp;</span><span class="t-dim">' + cmd + '</span>');
+    var result = COMMANDS[cmd];
+    if (!result && !cmd) return;
+    if (!result) {
+      appendLine('<span class="t-red">command not found: ' + cmd + ' &nbsp;·&nbsp; try <span class="t-green">help</span></span>');
+      return;
+    }
+    if (result[0] === '__clear__') { ltBody.innerHTML = ''; return; }
+    if (result[0] === '__exit__')  { closeTerminal(); return; }
+    result.forEach(function(line, i) {
+      setTimeout(function() { appendLine(line); }, i * 45);
+    });
+  }
+
+  function openTerminal() {
+    terminal.classList.add('lt-open');
+    setTimeout(function() { ltInput.focus(); }, 60);
+  }
+
+  function closeTerminal() {
+    terminal.classList.remove('lt-open');
+    ltInput.blur();
+  }
+
+  ltInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { runCommand(ltInput.value); ltInput.value = ''; }
+  });
+
+  // click backdrop to close
+  terminal.addEventListener('click', function(e) {
+    if (e.target === terminal) closeTerminal();
+  });
+
+  // ── KONAMI BOOT SEQUENCE ────────────────────────────────────────
+  var KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  var kSeq = [];
+
+  var biosOverlay = document.getElementById('bios-overlay');
+  var biosOut     = document.getElementById('bios-out');
+  var biosReady   = false;
+
+  var BOOT_LINES = [
+    'GOGAH LABS BIOS v0.1.0',
+    'Copyright (C) 2022-2026 David Ogar. All rights reserved.',
+    '',
+    'Detecting CPU............... ARM64 @ 3.6GHz          [ OK ]',
+    'Initializing memory......... 32GB LPDDR5X            [ OK ]',
+    'Checking storage............ NVMe 2TB                [ OK ]',
+    '',
+    'Loading kernel modules...',
+    '  semiconductors.ko                                  [ OK ]',
+    '  autonomous-systems.ko                              [ OK ]',
+    '  distributed-systems.ko                             [ OK ]',
+    '  ai-research.ko                                     [ OK ]',
+    '  reverse-engineering.ko                             [ OK ]',
+    '',
+    'Starting services...',
+    '  semradr.service                                    [ OK ]',
+    '  gogahlabs.service                                  [ OK ]',
+    '  curiosity.service ......... [persistent]           [ OK ]',
+    '',
+    'init david.ogar complete.',
+    'System ready. One brick at a time.',
+    '',
+    '> Press any key to continue_'
+  ];
+
+  function showBoot() {
+    biosOverlay.classList.add('bios-active');
+    biosOut.textContent = '';
+    biosReady = false;
+    BOOT_LINES.forEach(function(line, i) {
+      setTimeout(function() {
+        biosOut.textContent += line + '\n';
+        if (i === BOOT_LINES.length - 1) biosReady = true;
+      }, i * 100);
+    });
+  }
+
+  // ── KEYBOARD SHORTCUTS ──────────────────────────────────────────
+  // g+h → home, g+a → archives, g+p → projects, g+n → now, g+w → about, / → search, ? → shortcuts help
+  var gPressed = false, gTimer = null;
+  var SHORTCUTS = {
+    'h': '/', 'a': '/archives/', 'p': '/projects/', 'n': '/now/', 'w': '/about/'
+  };
+
+  // shortcuts help overlay
+  var helpOverlay = document.createElement('div');
+  helpOverlay.id = 'kb-help';
+  helpOverlay.innerHTML = [
+    '<div id="kb-help-inner">',
+    '  <div class="kb-title">// keyboard shortcuts</div>',
+    '  <table class="kb-table">',
+    '    <tr><td><kbd>g</kbd><kbd>h</kbd></td><td>home</td></tr>',
+    '    <tr><td><kbd>g</kbd><kbd>a</kbd></td><td>archives</td></tr>',
+    '    <tr><td><kbd>g</kbd><kbd>p</kbd></td><td>projects</td></tr>',
+    '    <tr><td><kbd>g</kbd><kbd>n</kbd></td><td>now</td></tr>',
+    '    <tr><td><kbd>g</kbd><kbd>w</kbd></td><td>about</td></tr>',
+    '    <tr><td><kbd>/</kbd></td><td>search</td></tr>',
+    '    <tr><td><kbd>`</kbd></td><td>open terminal</td></tr>',
+    '    <tr><td><kbd>?</kbd></td><td>this help</td></tr>',
+    '    <tr><td><kbd>esc</kbd></td><td>close overlays</td></tr>',
+    '  </table>',
+    '  <div class="kb-close">press esc or ? to close</div>',
+    '</div>'
+  ].join('');
+  document.body.appendChild(helpOverlay);
+
+  // ── GLOBAL KEY HANDLER ──────────────────────────────────────────
+  document.addEventListener('keydown', function(e) {
+    // BIOS close
+    if (biosOverlay.classList.contains('bios-active')) {
+      if (biosReady) biosOverlay.classList.remove('bios-active');
+      return;
+    }
+    // help overlay close
+    if (helpOverlay.classList.contains('kb-open')) {
+      if (e.key === 'Escape' || e.key === '?') {
+        helpOverlay.classList.remove('kb-open');
+        return;
+      }
+    }
+    // terminal open / close
+    if (e.key === '`' && !terminal.classList.contains('lt-open')) {
+      e.preventDefault();
+      openTerminal();
+      return;
+    }
+    if (e.key === 'Escape' && terminal.classList.contains('lt-open')) {
+      closeTerminal();
+      return;
+    }
+    // skip shortcuts when typing in an input/textarea
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || e.target.isContentEditable) return;
+    // ? → shortcuts help
+    if (e.key === '?') {
+      helpOverlay.classList.toggle('kb-open');
+      return;
+    }
+    // / → search
+    if (e.key === '/') {
+      e.preventDefault();
+      window.location.href = '/search/';
+      return;
+    }
+    // g+x navigation
+    if (e.key === 'g') {
+      gPressed = true;
+      clearTimeout(gTimer);
+      gTimer = setTimeout(function() { gPressed = false; }, 1000);
+      return;
+    }
+    if (gPressed && SHORTCUTS[e.key]) {
+      gPressed = false;
+      clearTimeout(gTimer);
+      window.location.href = SHORTCUTS[e.key];
+      return;
+    }
+    // konami sequence
+    if (!terminal.classList.contains('lt-open')) {
+      kSeq.push(e.key);
+      if (kSeq.length > KONAMI.length) kSeq.shift();
+      if (kSeq.join(',') === KONAMI.join(',')) { showBoot(); kSeq = []; }
+    }
+  });
+
+  // ── CURSOR NODE ─────────────────────────────────────────────────
+  var cursorNode = document.getElementById('cursor-node');
+  if (!window.matchMedia('(pointer: coarse)').matches) {
+    var mx = 0, my = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    (function tick() {
+      cx += (mx - cx) * 0.10;
+      cy += (my - cy) * 0.10;
+      cursorNode.style.transform = 'translate(' + (cx - 3) + 'px,' + (cy - 3) + 'px)';
+      requestAnimationFrame(tick);
+    })();
+    cursorNode.style.display = 'block';
+  }
+
+  // ── READING PROGRESS BAR ────────────────────────────────────────
+  var readProgress = document.getElementById('read-progress');
+  var readBar      = document.getElementById('read-bar');
+  var postContent  = document.querySelector('.post');
+
+  if (postContent) {
+    readProgress.style.display = 'block';
+    document.addEventListener('scroll', function() {
+      var doc    = document.documentElement;
+      var top    = doc.scrollTop || document.body.scrollTop;
+      var height = doc.scrollHeight - doc.clientHeight;
+      var pct    = height > 0 ? Math.min(100, (top / height) * 100) : 0;
+      readBar.style.width = pct + '%';
+    }, { passive: true });
+  }
+
+})();
+</script>

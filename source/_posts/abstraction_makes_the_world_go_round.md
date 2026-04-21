@@ -13,6 +13,8 @@ tags: [science, abstract, programming]
 
 This paper is not written to start another episode of a flat or round earth debate. Rather, I aim to spark a thought, and discuss what abstraction is, the pyramid of abstraction, and the price for abstraction.
 
+<!-- more -->
+
 Wikipedia defines Abstraction as a process wherein general rules and concepts are derived from using and classifying specific examples, literal (real or concrete) signifiers, first principles, or other methods. It also says it is the outcome of a concept that acts as a common noun for all subordinate concepts and connects any related concepts as a group, field, or category.
 
 I had initially thought about writing this blog targeted at the software - tech-folks. But I implore you to walk with me, I will make this relatable to both code and real life. [you might find computer-related terms, abeg no vex]

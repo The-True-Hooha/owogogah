@@ -18,6 +18,8 @@ A manual approach to this isn't viable, if I needed to scrape these data, I had 
 
 So with these as my functional requirements, I had to come up with the best approach to solve my problem.
 
+<!-- more -->
+
 ### Webscraping 101
 
 I use typescript with [nest.js](https://nestjs.com/) for most of my everyday project because of the familiarity and easy setup.

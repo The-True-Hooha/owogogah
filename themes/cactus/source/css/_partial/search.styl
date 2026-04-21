@@ -1,46 +1,195 @@
+// ================================================================
+// owogogah — search / signal scanner styles
+// ================================================================
+
+@keyframes search-fade-up
+  from
+    opacity: 0
+    transform: translateY(8px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes search-blink
+  0%, 100% { opacity: 1 }
+  50%       { opacity: 0 }
+
+@keyframes result-in
+  from
+    opacity: 0
+    transform: translateX(-4px)
+  to
+    opacity: 1
+    transform: translateX(0)
+
+#search
+  padding: 0
+
+.search-wrap
+  padding-top: 0.25rem
+
+// ── HEADER ───────────────────────────────────────────────────────
+
+.search-header
+  margin-bottom: 2rem
+  padding-bottom: 1.5rem
+  border-bottom: 1px solid rgba(43, 188, 138, 0.15)
+  opacity: 0
+  animation: search-fade-up 0.4s ease 0.05s forwards
+
+.search-eyebrow
+  font-size: 10px
+  letter-spacing: 0.2em
+  text-transform: uppercase
+  color: $color-accent-1
+  opacity: 0.7
+  margin-bottom: 0.4rem
+
+.search-hint
+  font-size: 11px
+  color: $color-meta
+  opacity: 0.6
+  margin: 0
+
+// ── INPUT ────────────────────────────────────────────────────────
+
+.search-input-wrap
+  display: flex
+  align-items: center
+  gap: 0.6rem
+  padding: 0.65rem 0
+  border-bottom: 1px solid rgba(43, 188, 138, 0.3)
+  margin-bottom: 2rem
+  opacity: 0
+  animation: search-fade-up 0.4s ease 0.12s forwards
+  transition: border-color 0.2s ease
+
+  &:focus-within
+    border-color: $color-accent-1
+
+.search-prompt
+  font-size: 18px
+  color: $color-accent-1
+  line-height: 1
+  flex-shrink: 0
+  opacity: 0.8
+
 .search-input
-  padding: 4px 7px
-  width: 100%
+  flex: 1
+  background: transparent
+  border: none
   outline: none
-  border: solid 1px $color-accent-3
-  border-radius: 5px
-  background-color: $color-background
+  font-family: $font-family-mono
+  font-size: 14px
   color: $color-text
-  font-size: 1.2rem
-  -webkit-border-radius: 5px
-  -moz-border-radius: 5px
+  caret-color: $color-accent-1
+  padding: 0
 
-  &:focus
-    border: solid 1px $color-accent-1
+  &::placeholder
+    color: $color-meta
+    opacity: 0.35
 
-#search-result
+// ── IDLE STATE ───────────────────────────────────────────────────
+
+.search-idle
+  display: flex
+  flex-direction: column
+  gap: 0.4rem
+  padding: 1rem
+  border: 1px dotted rgba(43, 188, 138, 0.12)
+  border-radius: 2px
+  opacity: 0
+  animation: search-fade-up 0.4s ease 0.2s forwards
+
+.search-idle-line
+  display: grid
+  grid-template-columns: 60px 1fr
+  gap: 1rem
+  font-size: 11px
+
+.sil-key
+  color: $color-meta
+  opacity: 0.45
+  letter-spacing: 0.08em
+
+.sil-val
+  color: $color-meta
+  opacity: 0.6
+
+.sil-ready
+  color: $color-accent-1
+  opacity: 1
+
+// ── RESULTS ──────────────────────────────────────────────────────
+
+.search-result-wrap
+  border-top: 1px solid rgba(43, 188, 138, 0.12)
+
   ul.search-result-list
     padding: 0
-    list-style-type: none
+    margin: 0
+    list-style: none
 
   li
-    margin: 2em auto
+    padding: 0.75rem 0.5rem
+    border-bottom: 1px dotted rgba(144, 141, 141, 0.2)
+    margin: 0
+    animation: result-in 0.25s ease forwards
+    transition: background 0.15s ease
+    border-radius: 2px
+
+    &:first-child
+      margin-top: 0
+
+    &:hover
+      background: rgba(43, 188, 138, 0.04)
+
+      a.search-result-title
+        color: #ffffff
 
   a.search-result-title
-    background-image: none
+    display: block
+    font-size: 14px
+    font-weight: 700
     color: $color-text
-    text-transform: capitalize
-    font-weight: bold
-    line-height: 1.2
+    text-decoration: none
+    background: none
+    margin-bottom: 0.35rem
+    letter-spacing: -0.01em
+    transition: color 0.2s ease
+
+    &:hover
+      background: none
+      background-image: none
+      color: #ffffff
 
   p.search-result
+    font-size: 11px
+    color: $color-meta
+    line-height: 1.65
+    margin: 0
     overflow: hidden
-    margin: .4em auto
-    max-height: 13em
-    text-align: justify
-    font-size: .8em
+    max-height: 4em
+    opacity: 0.75
 
   em.search-keyword
-    border-bottom: 1px dashed $color-link
-    color: $color-link
-    font-weight: bold
+    font-style: normal
+    font-weight: 700
+    color: $color-accent-1
+    border-bottom: 1px dotted rgba(43, 188, 138, 0.5)
+
+// ── NO RESULT ────────────────────────────────────────────────────
 
 .search-no-result
   display: none
-  padding-bottom: .5em
-  color: $color-text
+  font-size: 12px
+  color: $color-meta
+  opacity: 0.5
+  padding: 1rem 0.5rem
+  display: flex
+  align-items: center
+  gap: 0.5rem
+
+  .snr-icon
+    color: $color-accent-1
+    opacity: 0.5

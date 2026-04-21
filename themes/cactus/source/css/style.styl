@@ -38,7 +38,7 @@ html
   margin: 0
   padding: 0
   height: 100%
-  border-top: 2px solid $color-text
+  border-top: 2px solid $color-accent-1
   -webkit-text-size-adjust: 100%
   -ms-text-size-adjust: 100%
 
@@ -145,8 +145,48 @@ body
 @import "_partial/tags"
 @import "_partial/tooltip"
 @import "_partial/categories"
+@import "_easter-eggs"
+@import "_about"
+@import "_projects"
+@import "_now"
 // Code
 @import "_highlight/" + $highlight
+
+// ── 404 page ────────────────────────────────────────────────────
+
+.notfound-wrap
+  padding: 4rem 0 2rem
+  display: flex
+  flex-direction: column
+  gap: 0.75rem
+
+.notfound-code
+  font-size: 72px
+  font-weight: 700
+  color: $color-accent-1
+  line-height: 1
+  letter-spacing: -0.04em
+
+.notfound-title
+  font-size: 20px
+  color: $color-text
+  letter-spacing: 0.1em
+  text-transform: lowercase
+
+.notfound-msg
+  font-size: 13px
+  color: $color-meta
+  line-height: 1.8
+  max-width: 38rem
+
+.notfound-footer
+  margin-top: 1.5rem
+
+.notfound-cmd
+  font-size: 11px
+  color: $color-meta
+  opacity: 0.5
+  letter-spacing: 0.05em
 
 pre
   overflow-x: auto

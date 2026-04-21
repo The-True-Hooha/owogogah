@@ -4,10 +4,10 @@
 
 # Site
 title: owogogah
-subtitle: "Hey, I'm David, a software engineer and more.. "
+subtitle: "semiconductors. autonomous systems. ai."
 description: "Hi, I am David. Primarily work on software, semiconductors, and ai/autonomous systems; One brick at a time, dedicated to building my own [independent research lab](https://www.gogahlabs.com)"
-keywords:
-author: by David Ogar
+keywords: software, semiconductors, AI, autonomous systems, distributed systems, reverse engineering, research
+author: David Ogar
 language: en
 # timezone: ""
 
@@ -61,8 +61,8 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 1
-  order_by: date
+  per_page: 10
+  order_by: -date
 
 tag_generator:
   per_page: 20
@@ -102,6 +102,16 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: cactus
+
+# Feed (RSS/Atom)
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: true
+  content_limit: 140
+  content_limit_delim: ' '
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

@@ -1,0 +1,17 @@
+<%# ── /now page — dynamic layout ──────────────────────────────── %>
+<div class="now-wrap">
+  <div class="now-eyebrow">// now</div>
+  <h1 class="now-title">what i'm doing now</h1>
+  <div class="now-meta">
+    updated <span class="now-date"><%= page.date ? page.date.format('YYYY-MM-DD') : 'recently' %></span>
+    &nbsp;·&nbsp; <%= page.updated ? page.updated.fromNow() : '' %>
+  </div>
+
+  <div class="now-content">
+    <%- page.content %>
+  </div>
+
+  <div class="now-footer">
+    <span class="now-note">// this is a <a href="https://nownownow.com/about" target="_blank" rel="noopener">/now page</a>. what are you doing now?</span>
+  </div>
+</div>
