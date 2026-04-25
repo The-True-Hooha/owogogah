@@ -1,5 +1,5 @@
 <header id="header">
-  <a class="u-url u-uid" href="<%- url_for("/") %>">
+  <a class="u-url u-uid header-logo-link" href="<%- url_for("/") %>">
   <% if (theme.logo && theme.logo.enabled) { %>
     <% if (theme.gravatar && (theme.gravatar.email || theme.gravatar.hash) && theme.logo.gravatar) { %>
       <% if (theme.gravatar.email) { %>
@@ -12,21 +12,38 @@
           src="https://www.gravatar.com/avatar/<%= theme.gravatar.hash %>" />
       <% } %>
     <% } else { %>
-      <img id="logo" alt class="u-logo" src="<%- url_for(theme.logo.url) %>" />
+      <img id="logo" alt class="u-logo"
+        src="<%- url_for(theme.logo.url) %>"
+        srcset="<%- url_for(theme.logo.url) %> 1x, <%- url_for(theme.logo.url) %> 2x"
+        width="<%= theme.logo.width %>"
+        height="<%= theme.logo.height %>" />
     <% } %>
   <% } %>
-    <div id="title">
-      <h1 class="p-name"><%= config.title %></h1>
-    </div>
   </a>
-  <div id="nav">
+
+  <%# ── desktop nav ── %>
+  <nav id="nav">
     <ul>
-      <li class="icon">
-        <a href="#" aria-label="<%- __('icons.menu') %>"><i class="fa-solid fa-bars fa-2x"></i></a>
-      </li>
       <% for (var i in theme.nav) { %><!--
      --><li><a href="<%- url_for(theme.nav[i]) %>"><%= __('nav.'+i).replace("nav.", "") %></a></li><!--
    --><% } %>
     </ul>
-  </div>
+  </nav>
+
+  <%# ── mobile hamburger ── %>
+  <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<%# ── mobile side drawer ── %>
+<div id="nav-drawer" aria-hidden="true">
+  <nav>
+    <ul>
+      <% for (var i in theme.nav) { %>
+      <li><a href="<%- url_for(theme.nav[i]) %>"><%= __('nav.'+i).replace("nav.", "") %></a></li>
+      <% } %>
+    </ul>
+  </nav>
+</div>
+<div id="nav-overlay" aria-hidden="true"></div>

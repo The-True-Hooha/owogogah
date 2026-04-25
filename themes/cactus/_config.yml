@@ -92,11 +92,6 @@ error_404:
   title: "404 — signal lost"
   description: "This page doesn't exist. Maybe it was an experiment that didn't make it, or a path that hasn't been built yet. Head back and try another route."
 
-
-##############################################################################
-# Look and Feel
-##############################################################################
-
 # Customize the logo (i.e., the cactus) in the header.
 # Options:
 #   - enabled: whether to show (true) or hide (false) the logo.
@@ -107,8 +102,8 @@ error_404:
 #   - grayout: whether to enable a hover effect on the logo
 logo:
   enabled: true
-  width: 50
-  height: 50
+  width: 32
+  height: 32
   url: /images/download.png
   gravatar: false
   grayout: false
